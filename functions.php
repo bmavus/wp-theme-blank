@@ -54,7 +54,10 @@ function new_body_classes( $classes ){
             $tn= str_replace(".php", "", $tmp);
             $classes[] = $tn;
         }
+        global $post;
+        $classes[] = 'page-'.get_post($post)->post_name;;
     }
+    if(is_page() && !is_front_page()) {$classes[] = 'static-page';}
     global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
     if($is_lynx) $classes[] = 'lynx';
     elseif($is_gecko) $classes[] = 'gecko';
@@ -65,7 +68,6 @@ function new_body_classes( $classes ){
     elseif($is_IE) $classes[] = 'ie';
     else $classes[] = 'unknown';
     if($is_iphone) $classes[] = 'iphone';
-
     return $classes;
 }
 add_filter( 'body_class', 'new_body_classes' );
