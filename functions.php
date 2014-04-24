@@ -15,7 +15,7 @@ remove_action('wp_head', 'wp_shortlink_wp_head' );
 remove_action('wp_head', 'adjacent_posts_rel_link_wp_head' );
 remove_action('wp_head', 'wp_generator');
 remove_action('wp_head', 'rel_canonical');
-//remove_action('wp_head', 'qtrans_header', 10, 0);
+remove_action('wp_head', 'qtrans_header', 10, 0);
 add_action('widgets_init', 'my_remove_recent_comments_style');
 function my_remove_recent_comments_style() {
     global $wp_widget_factory;
@@ -23,6 +23,23 @@ function my_remove_recent_comments_style() {
 }
 update_option('image_default_link_type','none');
 add_filter( 'show_admin_bar', '__return_false' );
+
+// remove wp version param from any enqueued scripts
+function vc_remove_wp_ver_css_js( $src ) {
+    if ( strpos( $src, 'ver=' ) )
+        $src = remove_query_arg( 'ver', $src );
+    return $src;
+}
+add_filter( 'style_loader_src', 'vc_remove_wp_ver_css_js', 9999 );
+add_filter( 'script_loader_src', 'vc_remove_wp_ver_css_js', 9999 );
+
+// changing the logo link from wordpress.org to your site
+function tt_login_url() {  return home_url(); }
+// changing the alt text on the logo to show your site name
+function tt_login_title() { return get_option( 'blogname' ); }
+
+add_filter( 'login_headerurl', 'bones_login_url' );
+add_filter( 'login_headertitle', 'bones_login_title' );
 
 //register menus
 register_nav_menus(array(
@@ -172,5 +189,49 @@ add_action('init', 'wp_http_compression');
 function remove_footer_admin () {
     echo 'Powered by <a href="http://www.wordpress.org" target="_blank">WordPress</a> | Theme Developer <a href="http://frontend.im" target="_blank">Tusko Trush</a></p>';
 }
-
 add_filter('admin_footer_text', 'remove_footer_admin');
+
+//qTranslate Taxonomies Description Fix
+function qtranslate_edit_taxonomies(){
+   $args=array(
+      'public' => true ,
+      '_builtin' => false
+   );
+   $output = 'object';
+   $operator = 'and'; // 'and' or 'or'
+   $taxonomies = get_taxonomies($args,$output,$operator);
+   if  ($taxonomies) {
+     foreach ($taxonomies  as $taxonomy ) {
+         add_action( $taxonomy->name.'_add_form', 'qtrans_modifyTermFormFor');
+         add_action( $taxonomy->name.'_edit_form', 'qtrans_modifyTermFormFor');
+     }
+   }
+}
+add_action('admin_init', 'qtranslate_edit_taxonomies');
+
+function remove_default_description($bloginfo) {
+  $default_tagline = 'Just another WordPress site';
+  return ($bloginfo === $default_tagline) ? '' : $bloginfo;
+}
+add_filter('get_bloginfo_rss', 'remove_default_description');
+
+//Wordpress ?s= redirect to /search/
+function tt_search_redirect() {
+    global $wp_rewrite;
+    if (!isset($wp_rewrite) || !is_object($wp_rewrite) || !$wp_rewrite->using_permalinks()) { return; }
+    $search_base = $wp_rewrite->search_base;
+    if (is_search() && !is_admin() && strpos($_SERVER['REQUEST_URI'], "/{$search_base}/") === false) {
+        wp_redirect(home_url("/{$search_base}/" . urlencode(get_query_var('s'))));
+    exit();
+    }
+}
+add_action('template_redirect', 'tt_search_redirect');
+
+//Fix for empty search queries redirecting to home page
+function tt_request_filter($query_vars) {
+    if (isset($_GET['s']) && empty($_GET['s']) && !is_admin()) {
+        $query_vars['s'] = ' ';
+    }
+    return $query_vars;
+}
+add_filter('request', 'tt_request_filter');
