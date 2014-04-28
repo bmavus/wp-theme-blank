@@ -33,6 +33,15 @@ Registered one sidebar (Blog Sidebar).
 
 Added html compression
 
+Included auto-install recommended plugins
+
+qTranslate Taxonomies Title/Description Fixed
+
+Remove default blog description in RSS feed
+
+Added redirect for defaul wordpress search (?s= redirected to /search/),
+Fix for empty search queries redirecting to home page
+
 
 ## Shortcodes
 *shortcodes.php*
