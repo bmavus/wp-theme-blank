@@ -1,5 +1,9 @@
 <?php
 
+//Auto-install recommended plugins
+require_once('installer/installer.php');
+
+//shortcodes functions
 require_once('shortcodes.php');
 
 //uncomment if need CPT
