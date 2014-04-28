@@ -62,7 +62,7 @@ add_theme_support( 'post-thumbnails' );
 
 //custom theme url
 function theme(){
-    return str_replace(site_url(), '', get_stylesheet_directory_uri());
+    return ($_SERVER['REMOTE_ADDR']=='127.0.0.1'?site_url():'') . str_replace(site_url(), '', get_stylesheet_directory_uri());
     }
 
 //Body class
