@@ -259,3 +259,5 @@ function transliterate($textcyr = null, $textlat = null) {
     else if($textlat) return str_replace($lat, $cyr, $textlat);
     else return null;
 }
+
+update_option('uploads_use_yearmonth_folders', 0);
