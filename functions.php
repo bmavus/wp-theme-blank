@@ -42,8 +42,8 @@ function tt_login_url() {  return home_url(); }
 // changing the alt text on the logo to show your site name
 function tt_login_title() { return get_option( 'blogname' ); }
 
-add_filter( 'login_headerurl', 'bones_login_url' );
-add_filter( 'login_headertitle', 'bones_login_title' );
+add_filter( 'login_headerurl', 'tt_login_url' );
+add_filter( 'login_headertitle', 'tt_login_title' );
 
 //register menus
 register_nav_menus(array(
