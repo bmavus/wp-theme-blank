@@ -54,16 +54,22 @@
        -o-transition: all $sec ease 0s;
           transition: all $sec ease 0s;
 }
-@mixin transform($action) {
-  -webkit-transform: $action;
-     -moz-transform: $action;
-      -ms-transform: $action;
-       -o-transform: $action;
-          transform: $action;
-    /* prevent rotated text being jagged in Chrome and Safari */
+@mixin transform($action, $backface: false) {
+    @if $backface {
+      -webkit-transform: $action;
+         -moz-transform: $action;
+          -ms-transform: $action;
+           -o-transform: $action;
+              transform: $action;
     -webkit-backface-visibility:hidden;
+    } @else {
+      -webkit-transform: $action;
+         -moz-transform: $action;
+          -ms-transform: $action;
+           -o-transform: $action;
+              transform: $action;
+    }
 }
-
 @mixin user-select($select) {
   -webkit-touch-callout: $select;
   -webkit-user-select: $select;
