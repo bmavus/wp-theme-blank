@@ -191,7 +191,7 @@ if(!ob_start("ob_gzhandler")) ob_start();
 add_action('init', 'wp_http_compression');
 
 function remove_footer_admin () {
-    echo 'Powered by <a href="http://www.wordpress.org" target="_blank">WordPress</a> | Theme Developer <a href="http://frontend.im" target="_blank">Tusko Trush</a></p>';
+    echo 'Powered by <a href="http://www.wordpress.org" target="_blank">WordPress</a> | Theme Developer <a href="http://frontend.im" target="_blank">Tusko Trush</a>';
 }
 add_filter('admin_footer_text', 'remove_footer_admin');
 

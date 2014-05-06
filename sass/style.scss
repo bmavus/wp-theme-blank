@@ -134,8 +134,10 @@ a {
 }
 
 input, textarea, select {
+  -webkit-appearance: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   outline: 0 none;
+  @include box-sizing(border-box);
 }
 
 * {
@@ -149,13 +151,18 @@ img {
   height: auto;
 }
 
+/*
+img[src$=".gif"], img[src$=".png"] {
+   image-rendering: -moz-crisp-edges;
+   image-rendering:   -o-crisp-edges;
+   image-rendering: -webkit-optimize-contrast;
+   image-rendering: crisp-edges;
+   -ms-interpolation-mode: nearest-neighbor;
+}
+*/
+
 a > img {
   border: 0;
-}
-
-input, select, textarea {
-  -webkit-appearance: none;
-  @include box-sizing(border-box);
 }
 
 p {

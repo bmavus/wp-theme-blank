@@ -5,8 +5,6 @@ Blank wordpress template for writing themes
 
 Clean wp_head();
 
-Recent comments style removed.
-
 Image default link type - none.
 
 Registered 2 menus.
@@ -15,17 +13,17 @@ Thumbnails theme support.
 
 Custom theme url - theme();
 
-Modify <?php body_class(); ?> function.
+Modified <?php body_class(); ?> function.
 
 Custom excerpt gebid(POST_ID, NUMBER_OF_WORDS) (clear tags, wrapped in P tag).
 
-Removed ID's in menu list, Added classes for First & Last menu item.
+Removed ID's in menu list, Added classes for First & Last menu items.
 
-Deregistered contact form 7 styles.
+Deregistered Contact Form 7 styles.
 
 Custom Title seo_title() (Page title - Parent title - Blogname).
 
-In term description can write HTML.
+In term description can write HTML (qTranslate Taxonomies Title/Description Fixed also).
 
 Included Google CDN jQuery.
 
@@ -34,8 +32,6 @@ Registered one sidebar (Blog Sidebar).
 Added html compression
 
 Included auto-install recommended plugins
-
-qTranslate Taxonomies Title/Description Fixed
 
 Remove default blog description in RSS feed
 
@@ -57,3 +53,5 @@ Fix for empty search queries redirecting to home page
 <a target="_blank" href="http://crystalstudio.me/">Made with love, coffee and rock n' roll.</a>
 
 Lviv, Ukraine
+
+Follow me <a href="http://twitter.com/TuskoTrush" target="_blank">@TuskoTrush</a> on Twitter
