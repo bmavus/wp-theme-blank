@@ -12,7 +12,19 @@
         font-style: $font-style
     }
 }
+@mixin svg-font-face($font-family, $font-filename, $font-weight : normal, $font-style :normal) {
+    @font-face {
+        font-family: '#{$font-family}';
+        src: url('fonts/#{$font-filename}.svg##{$font-family}') format('svg');
+        font-weight: $font-weight;
+        font-style: $font-style
+    }
+}
 /* Using @include declare-font-face('FontName', 'font-filename', 400); */
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+/* Using @include svg-font-face('FontName', 'font-filename', 400); */
+}
 
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
