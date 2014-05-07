@@ -18,7 +18,7 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 /* Define touch events */
 var supportsTouch = false;
 if ('ontouchstart' in window) { supportsTouch = true; } else if(window.navigator.msPointerEnabled) { supportsTouch = true; }
-var TouchClickEvent = supportsTouch?'click':'touchstart');
+var TouchClickEvent = supportsTouch?'touchstart':'click');
 
 $(document).ready(function () {
     FastClick.attach(document.body);
