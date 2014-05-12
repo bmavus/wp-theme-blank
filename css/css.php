@@ -8,7 +8,7 @@ foreach ($styles as $css) {
 }
 $mincss = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $mincss);
 $mincss = str_replace(': ', ':', $mincss);
-$mincss = str_replace(array("\r\n",'    ','     '), '', $mincss);
+$mincss = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $mincss);
 $mincss = str_replace(';}','}', $mincss);
 $modified = 0;
 $offset = 60 * 60 * 24 * 7;
