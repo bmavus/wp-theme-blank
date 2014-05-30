@@ -19,7 +19,6 @@ remove_action('wp_head', 'wp_shortlink_wp_head' );
 remove_action('wp_head', 'adjacent_posts_rel_link_wp_head' );
 remove_action('wp_head', 'wp_generator');
 remove_action('wp_head', 'rel_canonical');
-remove_action('wp_head', 'qtrans_header', 10, 0);
 add_action('widgets_init', 'my_remove_recent_comments_style');
 function my_remove_recent_comments_style() {
     global $wp_widget_factory;
@@ -195,23 +194,27 @@ function remove_footer_admin () {
 }
 add_filter('admin_footer_text', 'remove_footer_admin');
 
-//qTranslate Taxonomies Description Fix
-function qtranslate_edit_taxonomies(){
-   $args=array(
-      'public' => true ,
-      '_builtin' => false
-   );
-   $output = 'object';
-   $operator = 'and'; // 'and' or 'or'
-   $taxonomies = get_taxonomies($args,$output,$operator);
-   if  ($taxonomies) {
-     foreach ($taxonomies  as $taxonomy ) {
-         add_action( $taxonomy->name.'_add_form', 'qtrans_modifyTermFormFor');
-         add_action( $taxonomy->name.'_edit_form', 'qtrans_modifyTermFormFor');
-     }
-   }
-}
-add_action('admin_init', 'qtranslate_edit_taxonomies');
+if(QTRANS_INIT):
+    //qTranslate Taxonomies Description Fix
+    function qtranslate_edit_taxonomies(){
+       $args=array(
+          'public' => true ,
+          '_builtin' => false
+       );
+       $output = 'object';
+       $operator = 'and'; // 'and' or 'or'
+       $taxonomies = get_taxonomies($args,$output,$operator);
+       if  ($taxonomies) {
+         foreach ($taxonomies  as $taxonomy ) {
+             add_action( $taxonomy->name.'_add_form', 'qtrans_modifyTermFormFor');
+             add_action( $taxonomy->name.'_edit_form', 'qtrans_modifyTermFormFor');
+         }
+       }
+    }
+    add_action('admin_init', 'qtranslate_edit_taxonomies');
+
+    remove_action('wp_head', 'qtrans_header', 10, 0);
+endif;
 
 function remove_default_description($bloginfo) {
   $default_tagline = 'Just another WordPress site';
