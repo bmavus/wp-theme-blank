@@ -12,7 +12,7 @@ ob_start('ob_html_compress');
 <head>
 <meta charset="UTF-8">
 <title><?php seo_title(); ?></title>
-<link rel="stylesheet" href="<?php echo theme(); ?>/css/css.php" />
+<link rel="stylesheet" href="<?php echo theme(); ?>/css/css.php?dev=1" />
 <!--[if lte IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <script src="//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>

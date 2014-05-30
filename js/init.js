@@ -22,7 +22,12 @@ var TouchClickEvent = supportsTouch?'touchstart':'click');
 
 $(document).ready(function () {
     FastClick.attach(document.body);
-    valid_wpcf7_fix();
+    $('body').on('click', '.wpcf7-not-valid-tip', function(){
+        $(this).prev().trigger('focus');
+        $(this).fadeOut(500,function(){
+            $(this).remove();
+        });
+    });
 });
 
 $(window).load(function(){
@@ -34,14 +39,6 @@ $(window).bind('orientationchange resize', function(){
 
 function footer(){
     $('.footix').height($('footer').height());
-}
-function valid_wpcf7_fix(){
-    $('body').on('click', '.wpcf7-not-valid-tip', function(){
-        $(this).prev().trigger('focus');
-        $(this).fadeOut(500,function(){
-            $(this).remove();
-        });
-    });
 }
 
 //Columns height

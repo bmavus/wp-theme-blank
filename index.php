@@ -16,7 +16,7 @@ if(is_date()){
 } else {
     $queryname = 'Recent Posts';
 } ?>
-<?php if($queryname) : echo $queryname; endif; ?>
+<?php if($queryname) : echo '<h1>'. $queryname. '</h1>'; endif; ?>
 <section class="content row cfx">
     <article>
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
