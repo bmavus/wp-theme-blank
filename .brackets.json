@@ -1,0 +1,15 @@
+{
+    "path": {
+        "sass/style.scss": {
+            "sass.enabled": true,
+            "sass.options": {
+                "output": "../css/style.css",
+                "includePaths": [],
+                "imagePath": null,
+                "sourceComments": "none",
+                "outputStyle": "compact"
+            },
+            "edge-code-kuler.LAST_DISPLAYED_COLLECTION": "FAVORITE_KULER_THEMES"
+        }
+    }
+}

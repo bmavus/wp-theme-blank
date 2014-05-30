@@ -1,5 +1,5 @@
-/* sass --watch sass:css --style compressed */
-
+//sass --watch sass:css --style compressed
+//sass --watch sass:css --style compact
 @mixin declare-font-face($font-family, $font-filename, $font-weight : normal, $font-style :normal) {
     @font-face {
         font-family: '#{$font-family}';
@@ -20,10 +20,10 @@
         font-style: $font-style
     }
 }
-/* Using @include declare-font-face('FontName', 'font-filename', 400); */
+//Using @include declare-font-face('FontName', 'font-filename', 400);
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-/* Using @include svg-font-face('FontName', 'font-filename', 400); */
+//Using @include svg-font-face('FontName', 'font-filename', 400);
 }
 
 @mixin border-radius($radius) {
@@ -58,7 +58,7 @@
         box-shadow: $top $left $blur $size $color;
     }
 }
-/* @include box-shadow(1px,1px,1px,0, #fff, true); */
+//@include box-shadow(1px,1px,1px,0, #fff, true);
 @mixin transition($sec) {
   -webkit-transition: all $sec ease 0s;
      -moz-transition: all $sec ease 0s;
@@ -105,7 +105,15 @@
     background-image: -o-linear-gradient($from, $to);
 }
 
-/* Custom Reset */
+@mixin imagenize(){
+    image-rendering: -moz-crisp-edges;
+    image-rendering:   -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+//Custom Reset
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
   display: block;
 }
@@ -163,16 +171,6 @@ img {
   height: auto;
 }
 
-/*
-img[src$=".gif"], img[src$=".png"] {
-   image-rendering: -moz-crisp-edges;
-   image-rendering:   -o-crisp-edges;
-   image-rendering: -webkit-optimize-contrast;
-   image-rendering: crisp-edges;
-   -ms-interpolation-mode: nearest-neighbor;
-}
-*/
-
 a > img {
   border: 0;
 }
@@ -189,7 +187,7 @@ ul, ol {
   min-height: 100%;
 }
 
-/* Clearfix */
+//Clearfix
 
 .clear {
   clear: both;
@@ -212,7 +210,7 @@ html[xmlns] .cfx {
   height: 1%;
 }
 
-/* Selection */
+//Selection
 
 ::-moz-selection, ::selection {
   color: #fff;
@@ -236,7 +234,7 @@ html[xmlns] .cfx {
   width: 0;
 }
 
-/* Parent of .valign must have fixed height */
+//Parent of .valign must have fixed height
 .valign2 {
   position: relative;
   top: 50%;
@@ -247,7 +245,7 @@ html[xmlns] .cfx {
   transform: translateY(-50%);
 }
 
-/* Wordpress classes */
+//Wordpress classes
 .alignleft {
   float: left;
 }
@@ -257,6 +255,11 @@ html[xmlns] .cfx {
 .aligncenter {
   margin-left: auto;
   margin-right: auto;
+}
+img.aligncenter {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 hr {
@@ -272,7 +275,7 @@ strong {
   font-weight: 700;
 }
 
-/* fullframe video */
+//fullframe video
 .fullframe {
   height: 0;
   margin: 0;
