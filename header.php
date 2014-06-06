@@ -25,7 +25,7 @@ ob_start('ob_html_compress');
 <?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
 </head>
 <body <?php body_class(); ?>>
-<div id="wrap">
+<main>
     <header>
         <div class="row cfx">
             <a href="<?php echo site_url(); ?>/" class="logo"></a>
