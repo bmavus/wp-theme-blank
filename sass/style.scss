@@ -2,6 +2,18 @@
 sass --watch sass:css --style compressed
 sass --watch sass:css --style compact
 */
+@function support-browser($args) {
+    @if length($args) == 1 {
+        @return map-has-key($browser-supports, to-lower-case($args));
+    }
+    @else {
+        @return not not index(
+            map-get($browser-supports, to-lower-case(nth($args, 1))),
+            nth($args, 2)
+            );
+    }
+}
+
 @mixin declare-font-face($font-family, $font-filename, $font-weight : normal, $font-style :normal) {
     @font-face {
         font-family: '#{$font-family}';
@@ -115,6 +127,14 @@ sass --watch sass:css --style compact
     -ms-interpolation-mode: nearest-neighbor;
 }
 
+@mixin inline-block {
+    display: inline-block;
+    @if support-browser(ie 7) {
+        *display: inline;
+        *zoom: 1;
+    }
+}
+
 /* custom reset */
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {display: block}
 audio, canvas, video {display: inline-block;*display: inline;*zoom: 1}
@@ -155,7 +175,7 @@ main {min-height: 100%}
 .clear {clear: both}
 .cfx:after {content: ".";display: block;clear: both;visibility: hidden;line-height: 0;height: 0}
 html[xmlns] .cfx {display: block}
-*html .cfx {height: 1%}
+* html .cfx {height: 1%}
 /* selection */
 ::-moz-selection, ::selection {color: #fff;background: #92d400}
 /* Vertical align inside DIV

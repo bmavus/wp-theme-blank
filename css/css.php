@@ -25,9 +25,9 @@ if(isset($dev)) {
         header ('Pragma:');
         header ("Last-Modified: ".gmdate("D, d M Y H:i:s", $modified )." GMT");
         if(extension_loaded('zlib')){ob_start('ob_gzhandler');}
-            ob_start("compress");
-                echo $mincss;
-            ob_end_flush();
+        ob_start("compress");
+        echo $mincss;
+        ob_end_flush();
         if(extension_loaded('zlib')){ob_end_flush();}
     }
 }
