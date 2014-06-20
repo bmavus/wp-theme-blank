@@ -128,7 +128,7 @@ function replace_class_on_last_occurance_wpse_100781($output) {
 }
 add_filter('wp_nav_menu', 'replace_class_on_last_occurance_wpse_100781');
 
-//DEREGISTER CONTACT FORM 7 STYLES
+//Deregister Contact Form 7 styles
 add_action( 'wp_print_styles', 'voodoo_deregister_styles', 100 );
 function voodoo_deregister_styles() {
     wp_deregister_style( 'contact-form-7' );
@@ -136,13 +136,16 @@ function voodoo_deregister_styles() {
 
 //custom SEO title
 function seo_title(){
-global $post;
+    global $post;
     if($post->post_parent) {
         $parent_title = get_the_title($post->post_parent);
         echo wp_title('-', true, 'right') . $parent_title.' - ';
+    } elseif(@is_shop()) {
+        echo get_the_title(SHOP_ID) . ' - ';
     } else {
         wp_title('-', true, 'right');
-    } bloginfo('name');
+    }
+    bloginfo('name');
 }
 
 //images sizes
