@@ -50,11 +50,16 @@ register_nav_menus(array(
     'foot_menu' => 'Footer navigation'
 ));
 
-/* BEGIN: Theme config section*/
-    define ('HOME_PAGE_ID', get_option('page_on_front'));
-    define ('BLOG_ID', get_option('page_for_posts'));
-    define ('POSTS_PER_PAGE', get_option('posts_per_page'));
-/* END: Theme config section*/
+
+/* BEGIN: Theme config params*/
+define ('HOME_PAGE_ID', get_option('page_on_front'));
+define ('BLOG_ID', get_option('page_for_posts'));
+define ('POSTS_PER_PAGE', get_option('posts_per_page'));
+if(class_exists('Woocommerce')) :
+    define ('SHOP_ID', get_option('woocommerce_shop_page_id'));
+    define ('ACCOUNT_ID', get_option('woocommerce_myaccount_page_id'));
+endif;
+/* END: Theme config params */
 
 //Thumbnails theme support
 add_theme_support( 'post-thumbnails' );
