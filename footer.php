@@ -1,5 +1,5 @@
 <div class="footix"></div>
-</main>
+</div>
 <footer>
     <div class="row cfx">
 
