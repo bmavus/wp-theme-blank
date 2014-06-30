@@ -140,7 +140,7 @@ function seo_title(){
     if($post->post_parent) {
         $parent_title = get_the_title($post->post_parent);
         echo wp_title('-', true, 'right') . $parent_title.' - ';
-    } elseif(@is_shop()) {
+    } elseif(is_plugin_active('woocommerce/woocommerce.php') && is_shop()) {
         echo get_the_title(SHOP_ID) . ' - ';
     } else {
         wp_title('-', true, 'right');

@@ -7,7 +7,7 @@
                 "includePaths": [],
                 "imagePath": null,
                 "sourceComments": "none",
-                "outputStyle": "compact"
+                "outputStyle": "nested"
             },
             "edge-code-kuler.KULER_URLS": "{\"MY_KULER_THEMES\":true,\"FAVORITE_KULER_THEMES\":true,\"POPULAR_KULER_THEMES\":true,\"RANDOM_KULER_THEMES\":true}",
             "edge-code-kuler.MY_KULER_THEMES": "{\"themes\":[],\"totalCount\":0}",

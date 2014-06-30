@@ -6,7 +6,6 @@ sass --watch sass:css --style compact
 /*@media screen and (-webkit-min-device-pixel-ratio:0) {
 //Using @include svg-font-face('FontName', 'font-filename', 400);
 }*/
-/* @include box-shadow(1px, 1px, 1px, 0, #fff, true); */
 /* custom reset */
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
   display: block; }

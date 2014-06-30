@@ -55,8 +55,8 @@ function my_theme_register_required_plugins() {
             'required'  => false,
         ),
         array(
-            'name'      => 'Force Regenerate Thumbnails',
-            'slug'      => 'force-regenerate-thumbnails',
+            'name'      => 'AJAX Thumbnail Rebuild',
+            'slug'      => 'ajax-thumbnail-rebuild',
             'required'  => false,
         ),
         array(
@@ -67,6 +67,21 @@ function my_theme_register_required_plugins() {
         array(
             'name'      => 'Featured Image Column',
             'slug'      => 'featured-image-column',
+            'required'  => false,
+        ),
+        array(
+            'name'      => 'Cyr to Lat enhanced',
+            'slug'      => 'cyr3lat',
+            'required'  => false,
+        ),
+        array(
+            'name'      => 'WP-SCSS',
+            'slug'      => 'wp-scss',
+            'required'  => false,
+        ),
+        array(
+            'name'      => 'WP No Category Base',
+            'slug'      => 'wp-no-category-base',
             'required'  => false,
         ),
         array(

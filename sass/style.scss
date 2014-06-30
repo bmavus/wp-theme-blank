@@ -54,7 +54,6 @@ sass --watch sass:css --style compact
     -moz-box-shadow: $shadow;
     box-shadow:$shadow;
 }
-/* @include box-shadow(1px, 1px, 1px, 0, #fff, true); */
 @mixin transition($sec) {
     -webkit-transition: all $sec ease 0s;
     -moz-transition: all $sec ease 0s;
