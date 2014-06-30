@@ -1,7 +1,5 @@
-/*
-sass --watch sass:css --style compressed
-sass --watch sass:css --style compact
-*/
+//sass --watch sass:css --style compressed
+//sass --watch sass:css --style compact
 @mixin declare-font-face($font-family, $font-filename, $font-weight : normal, $font-style :normal) {
     @font-face {
         font-family: '#{$font-family}';
@@ -22,11 +20,11 @@ sass --watch sass:css --style compact
         font-style: $font-style
     }
 }
-/* Using @include declare-font-face('FontName', 'font-filename', 400); */
+//Using @include declare-font-face('FontName', 'font-filename', 400);
 
-/*@media screen and (-webkit-min-device-pixel-ratio:0) {
+//@media screen and (-webkit-min-device-pixel-ratio:0) {
 //Using @include svg-font-face('FontName', 'font-filename', 400);
-}*/
+//}
 
 @mixin border-radius($radius) {
     -webkit-border-radius: $radius;
@@ -108,7 +106,7 @@ sass --watch sass:css --style compact
     -ms-interpolation-mode: nearest-neighbor;
 }
 
-/* custom reset */
+//custom reset
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {display: block}
 audio, canvas, video {display: inline-block;*display: inline;*zoom: 1}
 mark {background: none}
@@ -123,7 +121,8 @@ html {
     -webkit-text-size-adjust: none;
 }
 a {
-    color: #00aeef;
+    color: #67838c;
+    text-decoration: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     outline: 0 none;
     &:hover {
@@ -144,24 +143,25 @@ p {padding-bottom: 20px}
 ul, ol {list-style: none}
 #wrap {min-height: 100%}
 
-/* clearfix */
+//clearfix
 .clear {clear: both}
 .cfx:after {content: ".";display: block;clear: both;visibility: hidden;line-height: 0;height: 0}
 html[xmlns] .cfx {display: block}
 * html .cfx {height: 1%}
-/* selection */
-::-moz-selection, ::selection {color: #fff;background: #92d400}
-/* Vertical align inside DIV
-<span class="valign">Some content</span>
-<span class="vfix"></span>
-*/
+//selection
+::-moz-selection {color: #fff;background: #6b2e6e}
+::selection {color: #fff;background: #6b2e6e}
+// Vertical align inside DIV
+// <span class="valign">Some content</span>
+// <span class="vfix"></span>
+
 .valign {display: inline-block;vertical-align: middle; max-width: 98%}
 .vfix {display: inline-block;height: 100%;vertical-align: middle;width: 0}
 
-/*Parent of .valign must have fixed height*/
+// Parent of .valign must have fixed height
 .valign2 {position: relative;top: 50%;@include transform(translateY(-50%))}
 
-/* Wordpress classes */
+// Wordpress classes
 .alignleft {float: left}
 .alignright {float: right}
 .aligncenter {margin-left: auto;margin-right: auto}
@@ -175,7 +175,7 @@ hr {
     margin: 20px 0;
 }
 strong {font-weight: 700}
-/*fullframe video*/
+// fullframe video
 .fullframe {height: 0;margin: 0;overflow: hidden;padding-bottom: 56.25%;padding-top: 30px;position: relative;z-index: 0;
     > {
         iframe, object, embed {height: 100%;left: 0;position: absolute;top: 0;width: 100%;z-index: -1;}
