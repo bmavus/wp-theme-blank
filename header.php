@@ -2,18 +2,21 @@
 header('Content-Type: text/html; charset=utf-8');
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 header('X-UA-Compatible: IE=Edge,chrome=1');
+/*
+// HTML Compress
 function ob_html_compress($buf){
     return preg_replace(array('/<!--(?>(?!\[).)(.*)(?>(?!\]).)-->/Uis','/[[:blank:]]+/'),array('',' '),str_replace(array("\n","\r","\t"),'',$buf));
 }
 ob_start('ob_html_compress');
+*/
 ?>
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title><?php seo_title(); ?></title>
-    <!--<link rel="stylesheet" href="<?php echo theme(); ?>/css/css.php" /> compressed-->
-    <link rel="stylesheet" href="<?php echo theme(); ?>/css/css.php?dev=true" /> <!--non-compressed-->
+    <!--<link rel="stylesheet" href="<?php echo theme(); ?>/style/css.php" /> compressed/cached -->
+    <link rel="stylesheet" href="<?php echo theme(); ?>/style/css.php?dev=true" /> <!--non-compressed-->
 <!--[if lte IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <script src="//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>

@@ -50,7 +50,6 @@ register_nav_menus(array(
     'foot_menu' => 'Footer navigation'
 ));
 
-
 /* BEGIN: Theme config params*/
 define ('HOME_PAGE_ID', get_option('page_on_front'));
 define ('BLOG_ID', get_option('page_for_posts'));
@@ -145,7 +144,7 @@ function seo_title(){
     if($post->post_parent) {
         $parent_title = get_the_title($post->post_parent);
         echo wp_title('-', true, 'right') . $parent_title.' - ';
-    } elseif(is_plugin_active('woocommerce/woocommerce.php') && is_shop()) {
+    } elseif(class_exists('Woocommerce') && is_shop()) {
         echo get_the_title(SHOP_ID) . ' - ';
     } else {
         wp_title('-', true, 'right');
