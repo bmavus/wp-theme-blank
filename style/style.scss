@@ -97,7 +97,6 @@
     background-image: -webkit-linear-gradient($from, $to);
     background-image: -o-linear-gradient($from, $to);
 }
-
 @mixin imagenize(){
     image-rendering: -moz-crisp-edges;
     image-rendering:   -o-crisp-edges;
@@ -105,6 +104,31 @@
     image-rendering: crisp-edges;
     -ms-interpolation-mode: nearest-neighbor;
 }
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-ms-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    }
+}
+//@include keyframes(bgcolor) {
+//    0% {
+//        background-color: #ffccf2;
+//    }
+//    50% {
+//        background-color: #ccffcc;
+//    }
+//    100% {
+//        background-color: #ccffff;
+//    }
+//}
 
 //custom reset
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {display: block}
