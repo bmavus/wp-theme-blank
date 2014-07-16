@@ -169,6 +169,38 @@ body {
   position: relative;
   width: 960px; }
 
+.wpcf7 .screen-reader-response {
+  display: none !important; }
+.wpcf7 .wpcf7-not-valid-tip {
+  background: #eee;
+  color: #ff5f5f;
+  font: 500 12px/45px 'Museo Sans';
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0; }
+.wpcf7 .wpcf7-response-output {
+  background: #fff;
+  padding: 2%;
+  float: left;
+  width: 96%;
+  display: none;
+  margin: 20px 0;
+  text-align: center; }
+  .wpcf7 .wpcf7-response-output.wpcf7-validation-errors {
+    background: #FF5F5F;
+    color: #fff; }
+  .wpcf7 .wpcf7-response-output.wpcf7-mail-sent-ng {
+    background: #1091ae;
+    color: #fff; }
+  .wpcf7 .wpcf7-response-output.wpcf7-mail-sent-ok {
+    background: #16A085;
+    color: #fff; }
+.wpcf7 .wpcf7-form-control-wrap {
+  display: block !important;
+  position: relative; }
+
 footer {
   position: absolute;
   right: 0;
