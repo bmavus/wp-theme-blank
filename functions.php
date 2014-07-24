@@ -25,6 +25,8 @@ function my_remove_recent_comments_style() {
     remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
 }
 update_option('image_default_link_type','none');
+update_option('uploads_use_yearmonth_folders', 0);
+
 add_filter( 'show_admin_bar', '__return_false' );
 
 // remove wp version param from any enqueued scripts
@@ -109,28 +111,6 @@ add_filter('nav_menu_item_id', 'clear_nav_menu_item_id', 10, 3);
 function clear_nav_menu_item_id($id, $item, $args) {
     return "";
 }
-
-//Added classes for First & Last menu item
-function add_position_classes_wpse_100781($classes, $item, $args) {
-  static $fl;
-  if (0 == $item->menu_item_parent) {
-    $fl = (empty($fl)) ? 'first' : 'middle';
-    $classes[] = $fl.'-menu-item';
-  }
-  return $classes;
-}
-add_filter('nav_menu_css_class','add_position_classes_wpse_100781',1,3);
-
-function replace_class_on_last_occurance_wpse_100781($output) {
-    $output = substr_replace(
-      $output,
-      'last-menu-item ',
-      strripos($output, 'middle-menu-item'),
-      strlen('middle-menu-item')
-    );
-    return $output;
-}
-add_filter('wp_nav_menu', 'replace_class_on_last_occurance_wpse_100781');
 
 //Deregister Contact Form 7 styles
 add_action( 'wp_print_styles', 'voodoo_deregister_styles', 100 );
@@ -269,5 +249,3 @@ function transliterate($textcyr = null, $textlat = null) {
     else if($textlat) return str_replace($lat, $cyr, $textlat);
     else return null;
 }
-
-update_option('uploads_use_yearmonth_folders', 0);
