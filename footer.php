@@ -5,7 +5,6 @@
 
     </div>
 </footer>
-<script src="<?php echo theme(); ?>/js/js.php"></script>
 <?php wp_footer(); ?>
 </body>
 </html>

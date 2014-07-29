@@ -146,14 +146,23 @@ foreach (array('term_description', 'link_description', 'link_notes', 'user_descr
 }
 
 //Google CDN jQuery
-function add_scripts() {
+function tt_add_scripts() {
     if (!is_admin()) {
-    wp_deregister_script( 'jquery' );
-    wp_register_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js');
-    wp_enqueue_script( 'jquery' );
+        wp_deregister_script( 'jquery' );
+        wp_register_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js');
+        wp_enqueue_script( 'jquery' );
+    }
+    wp_enqueue_script('tt_js', get_template_directory_uri().'/js/init.js', array('jquery'), '', FALSE );
+}
+function tt_add_style() {
+    $tt_file = get_stylesheet_uri().'/css/style.css';
+    if ( file_exists($tt_file) ) {
+        wp_register_style('tt_style', $tt_file);
+        wp_enqueue_style('tt_style');
     }
 }
-add_action('wp_enqueue_scripts', 'add_scripts');
+add_action('wp_print_styles', 'tt_add_style');
+add_action('wp_enqueue_scripts', 'tt_add_scripts');
 
 $bar = array(
     'name'          => 'Blog Sidebar',
