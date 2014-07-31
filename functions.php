@@ -155,7 +155,7 @@ function tt_add_scripts() {
     wp_enqueue_script('tt_lib', theme().'/js/lib.js', array('jquery'), '', true );
     wp_enqueue_script('tt_js', theme().'/js/init.js', array('jquery'), '', true );
 
-    wp_register_style('tt_style', theme().'/css/style.css');
+    wp_register_style('tt_style', theme().'/style/style.css');
     wp_enqueue_style('tt_style');
 }
 add_action('wp_enqueue_scripts', 'tt_add_scripts');
