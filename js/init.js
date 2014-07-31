@@ -6,7 +6,7 @@ var hash = window.location.hash;
 var ww = document.body.clientWidth;
 
 var mob = false;
-if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { var mob = true; }
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Windows Phone|ZuneWP7|Nokia|Opera Mini/i.test(navigator.userAgent)) { var mob = true; }
 var supportsTouch = false;
 if (window.hasOwnProperty('ontouchstart')) { supportsTouch = true; } else if (window.navigator.msPointerEnabled) { supportsTouch = true; }
 var TouchClickEvent = supportsTouch ? 'touchstart' : 'click';
