@@ -65,8 +65,8 @@ function my_theme_register_required_plugins() {
             'required'  => false,
         ),
         array(
-            'name'      => 'Featured Image Column',
-            'slug'      => 'featured-image-column',
+            'name'      => 'Quick Featured Images',
+            'slug'      => 'quick-featured-images',
             'required'  => false,
         ),
         array(
