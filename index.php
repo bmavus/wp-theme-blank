@@ -14,7 +14,7 @@ if(is_date()){
 } elseif(is_author()) {
     $queryname = 'Posts by ' . $curauth->nickname;
 } else {
-    $queryname = 'Recent Posts';
+    $queryname = get_the_title(BLOG_ID);
 } ?>
 <?php if($queryname) : echo '<h1>'. $queryname. '</h1>'; endif; ?>
 <section class="content row cfx">
