@@ -45,11 +45,6 @@ function my_theme_register_required_plugins() {
             'required'  => false,
         ),
         array(
-            'name'      => 'Advanced Custom Fields',
-            'slug'      => 'advanced-custom-fields',
-            'required'  => false,
-        ),
-        array(
             'name'      => 'WP Migrate DB',
             'slug'      => 'wp-migrate-db',
             'required'  => false,
@@ -85,34 +80,14 @@ function my_theme_register_required_plugins() {
             'required'  => false,
         ),
         array(
-            'name'               => 'Advanced Custom Fields: Options Page',
-            'slug'               => 'acf-options-page',
-            'source'             => get_stylesheet_directory() . '/installer/plugins/acf-options-page.zip',
+            'name'               => 'Advanced Custom Fields: PRO',
+            'slug'               => 'advanced-custom-fields-pro',
+            'source'             => get_stylesheet_directory() . '/installer/plugins/advanced-custom-fields-pro.zip',
             'required'           => false,
             'version'            => '',
             'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
             'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
-            'external_url'       => 'http://www.advancedcustomfields.com/add-ons/options-page/', // If set, overrides default API URL and points to an external URL.
-        ),
-        array(
-            'name'               => 'Advanced Custom Fields: Gallery Field',
-            'slug'               => 'acf-gallery',
-            'source'             => get_stylesheet_directory() . '/installer/plugins/acf-gallery.zip',
-            'required'           => false,
-            'version'            => '',
-            'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
-            'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
-            'external_url'       => 'http://www.advancedcustomfields.com/add-ons/gallery-field/', // If set, overrides default API URL and points to an external URL.
-        ),
-        array(
-            'name'               => 'Advanced Custom Fields: Repeater Field',
-            'slug'               => 'acf-repeater',
-            'source'             => get_stylesheet_directory() . '/installer/plugins/acf-repeater.zip',
-            'required'           => false,
-            'version'            => '',
-            'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
-            'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
-            'external_url'       => 'http://www.advancedcustomfields.com/add-ons/repeater-field/', // If set, overrides default API URL and points to an external URL.
+            'external_url'       => 'http://www.advancedcustomfields.com/pro/', // If set, overrides default API URL and points to an external URL.
         ),
     );
     $config = array(
