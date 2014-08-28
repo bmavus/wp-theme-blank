@@ -160,6 +160,13 @@ function tt_add_scripts() {
 }
 add_action('wp_enqueue_scripts', 'tt_add_scripts');
 
+function wp_IEhtml5_js () {
+    global $is_IE;
+    if ($is_IE)
+        echo '<!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><script src="//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->';
+}
+add_action('wp_head', 'wp_IEhtml5_js');
+
 $bar = array(
     'name'          => 'Blog Sidebar',
     'id'            => 'blogbar',
