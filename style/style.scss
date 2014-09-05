@@ -52,12 +52,19 @@
     -moz-box-shadow: $shadow;
     box-shadow:$shadow;
 }
-@mixin transition($sec) {
-    -webkit-transition: all $sec ease 0s;
-    -moz-transition: all $sec ease 0s;
-    -ms-transition: all $sec ease 0s;
-    -o-transition: all $sec ease 0s;
-    transition: all $sec ease 0s;
+@mixin transition($property: all, $duration: .5s, $easing: ease) {
+    -webkit-transition: $property $duration $easing;
+    -moz-transition: $property $duration $easing;
+    -ms-transition: $property $duration $easing;
+    -o-transition: $property $duration $easing;
+    transition: $property $duration $easing;
+}
+@mixin position($position: relative, $top:0, $right:0, $bottom:0, $left:0) {
+    position: $position;
+    top: $top;
+    right: $right;
+    left: $left;
+    bottom: $bottom;
 }
 @mixin transform($action, $backface: false) {
     @if $backface {
@@ -67,6 +74,7 @@
         -o-transform: $action;
         transform: $action;
         -webkit-backface-visibility:hidden;
+        backface-visibility:hidden;
     } @else {
         -webkit-transform: $action;
         -moz-transform: $action;
@@ -101,6 +109,9 @@
     background: linear-gradient(to bottom, $start $from,$stop $to);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{ie-hex-str($start)}', endColorstr='#{ie-hex-str($stop)}',GradientType=0 );
 }
+@mixin cfx(){
+    &:after {content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0}
+}
 @mixin imagenize(){
     image-rendering: -moz-crisp-edges;
     image-rendering:   -o-crisp-edges;
@@ -122,17 +133,6 @@
         @content;
     }
 }
-//@include keyframes(bgcolor) {
-//    0% {
-//        background-color: #ffccf2;
-//    }
-//    50% {
-//        background-color: #ccffcc;
-//    }
-//    100% {
-//        background-color: #ccffff;
-//    }
-//}
 
 //custom reset
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {display: block}
@@ -149,22 +149,19 @@ html {
     -webkit-text-size-adjust: none;
 }
 a {
-    color: #67838c;
+    color: #00c2cb;
     text-decoration: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     outline: 0 none;
     &:hover {
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         outline: 0 none;
     }
 }
 input, textarea, select {
     -webkit-appearance: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     outline: 0 none;
     @include box-sizing(border-box);
 }
-* {margin: 0;padding: 0;border-collapse: collapse}
+* {margin: 0;padding: 0;border-collapse: collapse; -webkit-tap-highlight-color: rgba(0,0,0,0)}
 img {max-width: 100%;height: auto}
 a > img {border: 0}
 p {padding-bottom: 20px}
@@ -177,8 +174,8 @@ ul, ol {list-style: none}
 html[xmlns] .cfx {display: block}
 * html .cfx {height: 1%}
 //selection
-::-moz-selection {color: #fff;background: #6b2e6e}
-::selection {color: #fff;background: #6b2e6e}
+::-moz-selection {color: #fff;background: #00c2cb}
+::selection {color: #fff;background: #00c2cb}
 // Vertical align inside DIV
 // <span class="valign">Some content</span>
 // <span class="vfix"></span>
