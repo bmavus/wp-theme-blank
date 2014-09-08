@@ -46,6 +46,30 @@ function tt_login_title() { return get_option( 'blogname' ); }
 add_filter( 'login_headerurl', 'tt_login_url' );
 add_filter( 'login_headertitle', 'tt_login_title' );
 
+// REMOVE THE WORDPRESS UPDATE NOTIFICATION FOR ALL USERS EXCEPT SYSADMIN
+global $user_login;
+get_currentuserinfo();
+if ($user_login !== "admin") { // change admin to the username that gets the updates
+    add_action( 'init', create_function( '$a', "remove_action( 'init', 'wp_version_check' );" ), 2 );
+    add_filter( 'pre_option_update_core', create_function( '$a', "return null;" ) );
+}
+// REMOVE THE WORDPRESS UPDATE NOTIFICATION FOR ALL USERS EXCEPT SYSADMIN
+if (!current_user_can('update_plugins')) { // checks to see if current user can update plugins
+    add_action( 'init', create_function( '$a', "remove_action( 'init', 'wp_version_check' );" ), 2 );
+    add_filter( 'pre_option_update_core', create_function( '$a', "return null;" ) );
+}
+if( current_user_can( 'manage_plugins' )) {
+    // The number 11 needs to be a 10 for this to work!
+    add_filter( 'in_admin_header', 'wp_codex_search_form', 11 );
+}
+
+//ADD WP CODEX SEARCH FORM TO DASHBOARD HEADER
+function wp_codex_search_form() {
+    echo '<form target="_blank" method="get" action="http://wordpress.org/search/do-search.php" class="alignright" style="margin: 11px 5px 0;">
+        <input type="text" onblur="this.value=(this.value==\'\') ? \'Search the Codex\' : this.value;" onfocus="this.value=(this.value==\'Search the Codex\') ? \'\' : this.value;" maxlength="150" value="Search the Codex" name="search" class="text"> <input type="submit" value="Go" class="button" />
+    </form>';
+}
+
 //register menus
 register_nav_menus(array(
     'head_menu' => 'Main navigation',
@@ -57,8 +81,8 @@ define ('HOME_PAGE_ID', get_option('page_on_front'));
 define ('BLOG_ID', get_option('page_for_posts'));
 define ('POSTS_PER_PAGE', get_option('posts_per_page'));
 if(class_exists('Woocommerce')) :
-    define ('SHOP_ID', get_option('woocommerce_shop_page_id'));
-    define ('ACCOUNT_ID', get_option('woocommerce_myaccount_page_id'));
+define ('SHOP_ID', get_option('woocommerce_shop_page_id'));
+define ('ACCOUNT_ID', get_option('woocommerce_myaccount_page_id'));
 endif;
 /* END: Theme config params */
 
@@ -68,7 +92,7 @@ add_theme_support( 'post-thumbnails' );
 //custom theme url
 function theme(){
     return ($_SERVER['REMOTE_ADDR']=='127.0.0.1'?site_url():'') . str_replace(site_url(), '', get_stylesheet_directory_uri());
-    }
+}
 
 //Body class
 function new_body_classes( $classes ){
@@ -100,13 +124,13 @@ function gebid($post_id, $num){
     $excerpt_length = $num; //Sets excerpt length by word count
     $the_excerpt = strip_tags(strip_shortcodes($the_excerpt)); //Strips tags and images
     $words = explode(' ', $the_excerpt, $excerpt_length + 1);
-        if(count($words) > $excerpt_length) :
-            array_pop($words);
-            array_push($words, '…');
-            $the_excerpt = implode(' ', $words);
-        endif;
+    if(count($words) > $excerpt_length) :
+    array_pop($words);
+    array_push($words, '…');
+    $the_excerpt = implode(' ', $words);
+    endif;
     $the_excerpt = '<p>' . $the_excerpt . '</p>';
-return $the_excerpt;
+    return $the_excerpt;
 }
 
 //remove ID in menu list
@@ -178,18 +202,8 @@ $bar = array(
     'after_widget'  => '</div>',
     'before_title'  => '<div class="widgettitle">',
     'after_title'   => '</div>'
-    );
+);
 register_sidebar($bar);
-
-function wp_http_compression() {
-    if (stripos($uri, '/js/tinymce') !== false)
-        return false;
-    if (ini_get('output_handler') == 'ob_gzhandler')
-        return false;
-    if (extension_loaded('zlib'))
-if(!ob_start("ob_gzhandler")) ob_start();
-}
-add_action('init', 'wp_http_compression');
 
 function remove_footer_admin () {
     echo 'Powered by <a href="http://www.wordpress.org" target="_blank">WordPress</a> | Theme Developer <a href="http://frontend.im" target="_blank">Tusko Trush</a>';
@@ -197,30 +211,30 @@ function remove_footer_admin () {
 add_filter('admin_footer_text', 'remove_footer_admin');
 
 if(QTRANS_INIT):
-    //qTranslate Taxonomies Description Fix
-    function qtranslate_edit_taxonomies(){
-       $args=array(
-          'public' => true ,
-          '_builtin' => false
-       );
-       $output = 'object';
-       $operator = 'and'; // 'and' or 'or'
-       $taxonomies = get_taxonomies($args,$output,$operator);
-       if  ($taxonomies) {
-         foreach ($taxonomies  as $taxonomy ) {
-             add_action( $taxonomy->name.'_add_form', 'qtrans_modifyTermFormFor');
-             add_action( $taxonomy->name.'_edit_form', 'qtrans_modifyTermFormFor');
-         }
-       }
+//qTranslate Taxonomies Description Fix
+function qtranslate_edit_taxonomies(){
+    $args=array(
+        'public' => true ,
+        '_builtin' => false
+    );
+    $output = 'object';
+    $operator = 'and'; // 'and' or 'or'
+    $taxonomies = get_taxonomies($args,$output,$operator);
+    if  ($taxonomies) {
+        foreach ($taxonomies  as $taxonomy ) {
+            add_action( $taxonomy->name.'_add_form', 'qtrans_modifyTermFormFor');
+            add_action( $taxonomy->name.'_edit_form', 'qtrans_modifyTermFormFor');
+        }
     }
-    add_action('admin_init', 'qtranslate_edit_taxonomies');
+}
+add_action('admin_init', 'qtranslate_edit_taxonomies');
 
-    remove_action('wp_head', 'qtrans_header', 10, 0);
+remove_action('wp_head', 'qtrans_header', 10, 0);
 endif;
 
 function remove_default_description($bloginfo) {
-  $default_tagline = 'Just another WordPress site';
-  return ($bloginfo === $default_tagline) ? '' : $bloginfo;
+    $default_tagline = 'Just another WordPress site';
+    return ($bloginfo === $default_tagline) ? '' : $bloginfo;
 }
 add_filter('get_bloginfo_rss', 'remove_default_description');
 
@@ -231,7 +245,7 @@ function tt_search_redirect() {
     $search_base = $wp_rewrite->search_base;
     if (is_search() && !is_admin() && strpos($_SERVER['REQUEST_URI'], "/{$search_base}/") === false) {
         wp_redirect(home_url("/{$search_base}/" . urlencode(get_query_var('s'))));
-    exit();
+        exit();
     }
 }
 add_action('template_redirect', 'tt_search_redirect');
@@ -246,21 +260,21 @@ function tt_request_filter($query_vars) {
 add_filter('request', 'tt_request_filter');
 
 function tt_dashboard_widgets() {
-  remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal');
-  remove_meta_box('dashboard_plugins', 'dashboard', 'normal');
-  remove_meta_box('dashboard_primary', 'dashboard', 'normal');
-  remove_meta_box('dashboard_secondary', 'dashboard', 'normal');
+    remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal');
+    remove_meta_box('dashboard_plugins', 'dashboard', 'normal');
+    remove_meta_box('dashboard_primary', 'dashboard', 'normal');
+    remove_meta_box('dashboard_secondary', 'dashboard', 'normal');
 }
 add_action('admin_init', 'tt_dashboard_widgets');
 
 function transliterate($textcyr = null, $textlat = null) {
     $cyr = array(
-    'ы', ' ', 'є', 'ї', 'ж',  'ч',  'щ',   'ш',  'ю',  'а', 'б', 'в', 'г', 'д', 'е', 'з', 'и', 'й', 'і', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ъ', 'ь', 'я',
-    'Ы','Є', 'Ї', 'Ж',  'Ч',  'Щ',   'Ш',  'Ю',  'А', 'Б', 'В', 'Г', 'Д', 'Е', 'З', 'И', 'Й', 'І', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ъ', 'Ь', 'Я');
+        'ы', ' ', 'є', 'ї', 'ж',  'ч',  'щ',   'ш',  'ю',  'а', 'б', 'в', 'г', 'д', 'е', 'з', 'и', 'й', 'і', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ъ', 'ь', 'я',
+        'Ы','Є', 'Ї', 'Ж',  'Ч',  'Щ',   'Ш',  'Ю',  'А', 'Б', 'В', 'Г', 'Д', 'Е', 'З', 'И', 'Й', 'І', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ъ', 'Ь', 'Я');
     $lat = array(
-    'y', '_', 'ye', 'yi', 'zh', 'ch', 'sht', 'sh', 'yu', 'a', 'b', 'v', 'g', 'd', 'e', 'z', 'i', 'j', 'i', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'c', 'y', 'x', 'ya',
-    'Y','Ye', 'Yi', 'Zh', 'Ch', 'Sht', 'Sh', 'Yu', 'A', 'B', 'V', 'G', 'D', 'E', 'Z', 'I', 'J', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F', 'H', 'c', 'Y', 'X', 'Ya');
+        'y', '_', 'ye', 'yi', 'zh', 'ch', 'sht', 'sh', 'yu', 'a', 'b', 'v', 'g', 'd', 'e', 'z', 'i', 'j', 'i', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'c', 'y', 'x', 'ya',
+        'Y','Ye', 'Yi', 'Zh', 'Ch', 'Sht', 'Sh', 'Yu', 'A', 'B', 'V', 'G', 'D', 'E', 'Z', 'I', 'J', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F', 'H', 'c', 'Y', 'X', 'Ya');
     if($textcyr) return str_replace($cyr, $lat, $textcyr);
     else if($textlat) return str_replace($lat, $cyr, $textlat);
-    else return null;
+        else return null;
 }
