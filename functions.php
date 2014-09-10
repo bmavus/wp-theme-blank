@@ -58,16 +58,15 @@ if (!current_user_can('update_plugins')) { // checks to see if current user can 
     add_action( 'init', create_function( '$a', "remove_action( 'init', 'wp_version_check' );" ), 2 );
     add_filter( 'pre_option_update_core', create_function( '$a', "return null;" ) );
 }
-if( current_user_can( 'manage_plugins' )) {
-    // The number 11 needs to be a 10 for this to work!
-    add_filter( 'in_admin_header', 'wp_codex_search_form', 11 );
-}
 
 //ADD WP CODEX SEARCH FORM TO DASHBOARD HEADER
 function wp_codex_search_form() {
-    echo '<form target="_blank" method="get" action="http://wordpress.org/search/do-search.php" class="alignright" style="margin: 11px 5px 0;">
+    echo '<form target="_blank" method="get" action="http://wordpress.org/search/do-search.php" class="alignright" style="margin: 0;position: absolute;right: 250px;z-index: 100000;top: -30px;">
         <input type="text" onblur="this.value=(this.value==\'\') ? \'Search the Codex\' : this.value;" onfocus="this.value=(this.value==\'Search the Codex\') ? \'\' : this.value;" maxlength="150" value="Search the Codex" name="search" class="text"> <input type="submit" value="Go" class="button" />
     </form>';
+}
+if ( current_user_can('manage_options') ) {
+    add_filter( 'in_admin_header', 'wp_codex_search_form', 10 );
 }
 
 //register menus
