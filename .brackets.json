@@ -9,7 +9,29 @@
                 "sourceComments": "none",
                 "outputStyle": "nested"
             },
-            "mikaeljorhult.bracketsPHPLintTools.php-available": true
+            "mikaeljorhult.bracketsPHPLintTools.php-available": true,
+            "technet.recentprojects.history": [
+                {
+                    "name": "wptheme",
+                    "path": "D:/AppServ/Загрузки/wptheme/"
+                },
+                {
+                    "name": "gsn",
+                    "path": "D:/AppServ/www/gsn/"
+                },
+                {
+                    "name": "popcorn",
+                    "path": "D:/AppServ/www/popcorn/"
+                },
+                {
+                    "name": "gaef",
+                    "path": "D:/AppServ/www/gaef/wp-content/themes/gaef/"
+                },
+                {
+                    "name": "dubl",
+                    "path": "D:/AppServ/www/dubl/"
+                }
+            ]
         }
     }
 }
