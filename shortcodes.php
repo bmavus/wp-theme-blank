@@ -246,7 +246,7 @@ function initialize_'.$mapid.'() {
     zoom: '.$zoom.',
     center: myLatlng,
     zoomControl: '.$zoomControl.',
-    scrollwheel: '.scrollwheel.',
+    scrollwheel: '.$scrollwheel.',
     scaleControl: '.$scaleControl.',
     disableDefaultUI: '.$disableDefaultUI.'
 };
