@@ -22,11 +22,11 @@ function get_subpages($parent_id) {
 */
 add_shortcode('subpages', 'get_subpages');
 
-//User can enter e-mail for ligin
+//User can enter e-mail for login
 add_filter('authenticate', 'bainternet_allow_email_login', 20, 3);
 function bainternet_allow_email_login( $user, $username, $password ) {
     if ( is_email( $username ) ) {
-        $user = get_user_by_email( $username );
+        $user = get_user_by( 'email', $username );
         if ( $user ) $username = $user->user_login;
     }
     return wp_authenticate_username_password(null, $username, $password );
