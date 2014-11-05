@@ -41,7 +41,7 @@ $(document).ready(function(){
                         dataType: 'json',
                         url: ajax_login_object.ajaxurl,
                         data: {
-                            'action': 'custom_register',
+                            'action': 'ajaxlogin',
                             'username': response.email,
                             'password': response.password,
                             'security': response.security
