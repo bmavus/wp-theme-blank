@@ -30,7 +30,7 @@ $(document).ready(function(){
             $this = $(this);
         $.ajax({
             type: "POST",
-            url: ajaxurl,
+            url: ajax_login_object.ajaxurl,
             data: form.serialize(),
             dataType: "json",
             success: function (response) {
@@ -41,7 +41,7 @@ $(document).ready(function(){
                         dataType: 'json',
                         url: ajax_login_object.ajaxurl,
                         data: {
-                            'action': 'ajaxlogin',
+                            'action': 'custom_register',
                             'username': response.email,
                             'password': response.password,
                             'security': response.security

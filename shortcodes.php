@@ -7,8 +7,8 @@ function get_subpages($parent_id) {
     $sp = '';
     $sp .= '<div class="perpage cfx">';
     foreach($subloop as $sub) {
-    setup_postdata($sub);
-    $img = get_field('icon', $sub->ID, true);
+        setup_postdata($sub);
+        $img = get_field('icon', $sub->ID, true);
         $sp .= '<div class="'.(($aa++%2==0)?'alignleft':'alignright').'" onClick="window.location=\''. get_permalink($sub->ID).'\'">';
         $sp .= '<h3 class="cfx"><img src="'. $img .'" class="alignleft" alt="'. $sub->post_title.'" />'. $sub->post_title.'</h3>';
         $sp .= '</div>';
@@ -100,9 +100,9 @@ function ajax_login() {
 add_action('register_form','addpass_register_form');
 function addpass_register_form (){
     $first_name = ( isset( $_POST['password'] ) ) ? $_POST['password']: ''; ?>
-        <label for="password">Password</label>
-            <input type="password" name="password" id="password" size="20" />
-    <?php
+<label for="password">Password</label>
+<input type="password" name="password" id="password" size="20" />
+<?php
 }
 add_filter('registration_errors', 'addpass_registration_errors', 10, 3);
 function addpass_registration_errors ($errors, $sanitized_user_login, $user_email) {
@@ -113,7 +113,7 @@ function addpass_registration_errors ($errors, $sanitized_user_login, $user_emai
 add_action('user_register', 'addpass_user_register');
 function addpass_user_register($user_id) {
     if ( isset( $_POST['password'] ) )
-    update_user_meta($user_id, 'password', $_POST['password']);
+        update_user_meta($user_id, 'password', $_POST['password']);
 }
 
 add_shortcode('ajax_register','ajax_regi_form');
@@ -136,11 +136,12 @@ function ajax_regi_form($atts,$content=null){
             <input type="hidden" name="action" value="custom_register" />
             <input type="submit" name="wp-submit" id="wp-submit" class="button" value="Create account" />
             <input type="hidden" name="redirect_to" value="'.$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"].'" />'
-            .wp_nonce_field( 'ajax-login-nonce', 'reg_security', null, false ).
-       '</div>
+        .wp_nonce_field( 'ajax-login-nonce', 'reg_security', null, false ).
+        '</div>
         <div id="regi-result"><span></span></div>
         <p id="regi-message"></p>
     </form>';
+    return $reform;
 }
 add_action( 'wp_ajax_custom_register', 'custom_register_new_user' );
 add_action( 'wp_ajax_nopriv_custom_register', 'custom_register_new_user' );
@@ -156,75 +157,75 @@ function custom_register_new_user() {
     $sanitized_user_login = sanitize_user( $user_email );
     $user_email = apply_filters( 'user_registration_email', $user_email );
 
-if ( $sanitized_user_login == '' ) {
-    $result['error'] ='<strong>ERROR</strong>: Please type your e-mail address.';
-    $result['errorcode'] = false;
-echo json_encode($result);
-exit();
-} elseif ( ! validate_username( $sanitized_user_login ) ) {
-    $result['error'] ='<strong>ERROR</strong>: This username is invalid because it uses illegal characters. Please enter a valid username.';
-    $sanitized_user_login = '';
-    $result['errorcode'] = false;
-echo json_encode($result);
-exit();
-} elseif ( username_exists( $sanitized_user_login ) ) {
-    $result['error'] ='<strong>ERROR</strong>: This username is already registered. Please choose another one.';
-    $result['errorcode'] = false;
-echo json_encode($result);
-exit();
-}
-
-if ( $user_email == '' ) {
-    $result['error'] ='<strong>ERROR</strong>: Please type your e-mail address.';
-    $result['errorcode'] = false;
-} elseif ( ! is_email( $user_email ) ) {
-echo json_encode($result);
-exit();
-    $result['error'] ='<strong>ERROR</strong>: The email address isn&#8217;t correct.';
-    $user_email = '';
-    $result['errorcode'] = false;
-echo json_encode($result);
-exit();
-} elseif ( email_exists( $user_email ) ) {
-    $errors .= '<strong>ERROR</strong>: This email is already registered, please choose another one.';
-    $result['errorcode'] = false;
-echo json_encode($result);
-exit();
-}
-
-if ( $user_pass == '' AND $user_repass == '' ) {
-    $result['error'] ='<strong>ERROR</strong>: Please type your password.';
-    $result['errorcode'] = false;
-echo json_encode($result);
-exit();
-} elseif ( $user_pass != $user_repass ) {
-    $result['error'] = '<strong>ERROR</strong>: The password not match.';
-    $user_pass = '';
-    $result['errorcode'] = false;
-echo json_encode($result);
-exit();
-}
-
-if($result['errorcode']){
-    $user_id = wp_create_user($sanitized_user_login, $user_pass, $user_email);
-    if ($user_id){
-        wp_update_user(array(
-            'ID'  => $user_id,
-            'first_name' => $first_name,
-            'display_name' => $first_name
-        ));
-        $result['user_id'] = $user_id;
-        $result['error'] ='You are registered successfully. Please wait...';
-        $result['log_in'] = 1;
-        $result['email'] = $user_email;
-        $result['password'] = $user_pass;
-        $result['security'] = $secury;
+    if ( $sanitized_user_login == '' ) {
+        $result['error'] ='<strong>ERROR</strong>: Please type your e-mail address.';
+        $result['errorcode'] = false;
+        echo json_encode($result);
+        exit();
+    } elseif ( ! validate_username( $sanitized_user_login ) ) {
+        $result['error'] ='<strong>ERROR</strong>: This username is invalid because it uses illegal characters. Please enter a valid username.';
+        $sanitized_user_login = '';
+        $result['errorcode'] = false;
+        echo json_encode($result);
+        exit();
+    } elseif ( username_exists( $sanitized_user_login ) ) {
+        $result['error'] ='<strong>ERROR</strong>: This username is already registered. Please choose another one.';
+        $result['errorcode'] = false;
+        echo json_encode($result);
+        exit();
     }
-    else $result['error'] = '<strong>ERROR</strong>: Add user in database.';
+
+    if ( $user_email == '' ) {
+        $result['error'] ='<strong>ERROR</strong>: Please type your e-mail address.';
+        $result['errorcode'] = false;
+    } elseif ( ! is_email( $user_email ) ) {
+        echo json_encode($result);
+        exit();
+        $result['error'] ='<strong>ERROR</strong>: The email address isn&#8217;t correct.';
+        $user_email = '';
+        $result['errorcode'] = false;
+        echo json_encode($result);
+        exit();
+    } elseif ( email_exists( $user_email ) ) {
+        $errors .= '<strong>ERROR</strong>: This email is already registered, please choose another one.';
+        $result['errorcode'] = false;
+        echo json_encode($result);
+        exit();
+    }
+
+    if ( $user_pass == '' AND $user_repass == '' ) {
+        $result['error'] ='<strong>ERROR</strong>: Please type your password.';
+        $result['errorcode'] = false;
+        echo json_encode($result);
+        exit();
+    } elseif ( $user_pass != $user_repass ) {
+        $result['error'] = '<strong>ERROR</strong>: The password not match.';
+        $user_pass = '';
+        $result['errorcode'] = false;
+        echo json_encode($result);
+        exit();
+    }
+
+    if($result['errorcode']){
+        $user_id = wp_create_user($sanitized_user_login, $user_pass, $user_email);
+        if ($user_id){
+            wp_update_user(array(
+                'ID'  => $user_id,
+                'first_name' => $first_name,
+                'display_name' => $first_name
+            ));
+            $result['user_id'] = $user_id;
+            $result['error'] ='You are registered successfully. Please wait...';
+            $result['log_in'] = 1;
+            $result['email'] = $user_email;
+            $result['password'] = $user_pass;
+            $result['security'] = $secury;
+        }
+        else $result['error'] = '<strong>ERROR</strong>: Add user in database.';
     }
     wp_new_user_notification($user_id, $user_pass);
-echo json_encode($result);
-exit();
+    echo json_encode($result);
+    exit();
 }
 
 function google_map_js($atts) {
@@ -238,8 +239,8 @@ function google_map_js($atts) {
         'scaleControl' => 'false',
         'disableDefaultUI' => 'false'
     ), $atts));
-$mapid = str_replace('-','_',$id);
-$map = '<div id="'.$id.'" '.($height?'style="height:'.$height.'"':'').'></div><script>var '.$mapid.';
+    $mapid = str_replace('-','_',$id);
+    $map = '<div id="'.$id.'" '.($height?'style="height:'.$height.'"':'').'></div><script>var '.$mapid.';
 function initialize_'.$mapid.'() {
     var myLatlng = new google.maps.LatLng('.$coordinates.');
     var mapOptions = {
