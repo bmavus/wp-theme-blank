@@ -191,6 +191,9 @@ html[xmlns] .cfx {display: block}
 .alignright {float: right}
 .aligncenter {margin-left: auto;margin-right: auto}
 img.aligncenter {margin-left: auto;margin-right: auto;display: block}
+
+.googlemap img {max-width: none}
+
 hr {
     background: #e1e1e1;
     height: 1px;

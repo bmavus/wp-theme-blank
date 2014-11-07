@@ -240,7 +240,7 @@ function google_map_js($atts) {
         'disableDefaultUI' => 'false'
     ), $atts));
     $mapid = str_replace('-','_',$id);
-    $map = '<div id="'.$id.'" '.($height?'style="height:'.$height.'"':'').'></div><script>var '.$mapid.';
+    $map = '<div class="googlemap" id="'.$id.'" '.($height?'style="height:'.$height.'"':'').'></div><script>var '.$mapid.';
 function initialize_'.$mapid.'() {
     var myLatlng = new google.maps.LatLng('.$coordinates.');
     var mapOptions = {
