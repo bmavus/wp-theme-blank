@@ -299,8 +299,27 @@ function transliterate($textcyr = null, $textlat = null) {
         else return null;
 }
 
-//
+//return header 403 for wrong login
 function my_login_failed_403() {
     status_header( 403 );
 }
-//add_action( 'wp_login_failed', 'my_login_failed_403' );
+add_action( 'wp_login_failed', 'my_login_failed_403' );
+
+if( function_exists('acf_add_options_page') ) {
+    acf_add_options_page(array(
+        'page_title' => 'Theme Settings',
+        'menu_title' => 'Theme Settings',
+        'menu_slug' => 'acf-theme-settings',
+        'capability' => 'edit_posts',
+        'redirect' => false
+    ));
+    acf_add_options_sub_page(array(
+        'page_title' => 'Header',
+        'menu_title' => 'Header',
+        'parent_slug' => 'acf-theme-settings',
+    ));
+    acf_add_options_sub_page(array(
+        'page_title' => 'Footer',
+        'menu_title' => 'Footer',
+        'parent_slug' => 'acf-theme-settings',
+    ));
