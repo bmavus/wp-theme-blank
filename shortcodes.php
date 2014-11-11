@@ -228,16 +228,20 @@ function custom_register_new_user() {
     exit();
 }
 
+/* google map shortcode
+    *** Useing [googlemap id="somemapid" coordinates="1 ,1" zoom="17" height="500px" infobox="<p>Some Infobox Content</p>"]
+*/
 function google_map_js($atts) {
     extract(shortcode_atts(array(
         'id'           => 'map_canvas',
         'coordinates'  => '1, 1',
         'zoom'         => 15,
-        'height'       => '',
+        'height'       => '350px',
         'zoomControl'  => 'false',
         'scrollwheel'  => 'false',
         'scaleControl' => 'false',
-        'disableDefaultUI' => 'false'
+        'disableDefaultUI' => 'false',
+        'infobox' => ''
     ), $atts));
     $mapid = str_replace('-','_',$id);
     $map = '<div class="googlemap" id="'.$id.'" '.($height?'style="height:'.$height.'"':'').'></div><script>var '.$mapid.';
@@ -257,6 +261,8 @@ marker = new google.maps.Marker({
     map: '.$mapid.',
     animation: google.maps.Animation.DROP
 });
+'.($infobox?'marker.info = new google.maps.InfoWindow({content: "'.$infobox.'"});google.maps.event.addListener(marker, "click", function() {marker.info.open('.$mapid.', marker);});':'').'
+
 google.maps.event.addListener('.$mapid.', "center_changed", function() {
         window.setTimeout(function() {
             '.$mapid.'.panTo(marker.getPosition());
@@ -269,6 +275,15 @@ google.maps.event.addDomListener(window, "load", initialize_'.$mapid.');
 }
 add_shortcode('googlemap', 'google_map_js');
 
+function content_btn($atts,$content){
+    extract(shortcode_atts(array(
+        'text' => 'Learn More',
+        'link' => site_url(),
+        'class' => false
+    ), $atts ));
+    return '<a target="_blank" href="' . $link . '" class="button'.($class?' '.$class:'').'">' . $text . '</a>';
+}
+add_shortcode("button", "content_btn");
 
 //remove <p> and <br /> from shortcodes
 add_filter('the_content', 'shortcode_empty_paragraph_fix');
