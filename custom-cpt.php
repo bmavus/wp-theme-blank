@@ -1,28 +1,31 @@
 <?php
 //Example for Custom Post Type with Taxonimies
 
-//Jobs
-add_action( 'init', 'register_jobs' );
-function register_jobs() {
+/*
+    *** You van use dash-icons https://developer.wordpress.org/resource/dashicons/
+*/
+add_action( 'init', 'register_cpts' );
+function register_cpts() {
 
-//custom taxonomy attached to jobs CPT
+    //custom taxonomy attached to jobs CPT
+    $taxname = 'Taxonomy Name';
     $taxlabels = array(
-        'name'                          => 'taxcpt',
-        'singular_name'                 => 'taxcpt',
-        'search_items'                  => 'Search taxcpt',
-        'popular_items'                 => 'Popular taxcpt',
-        'all_items'                     => 'All taxcpts',
-        'parent_item'                   => 'Parent taxcpt',
-        'edit_item'                     => 'Edit taxcpt',
-        'update_item'                   => 'Update taxcpt',
-        'add_new_item'                  => 'Add New taxcpt',
-        'new_item_name'                 => 'New taxcpt',
-        'separate_items_with_commas'    => 'Separate types with commas',
-        'add_or_remove_items'           => 'Add or remove types',
-        'choose_from_most_used'         => 'Choose from most used types'
-        );
+        'name'                          => $shorname,
+        'singular_name'                 => $shorname,
+        'search_items'                  => 'Search '.$shorname,
+        'popular_items'                 => 'Popular '.$shorname,
+        'all_items'                     => 'All '.$shorname.'s',
+        'parent_item'                   => 'Parent '.$shorname,
+        'edit_item'                     => 'Edit '.$shorname,
+        'update_item'                   => 'Update '.$shorname,
+        'add_new_item'                  => 'Add New '.$shorname,
+        'new_item_name'                 => 'New '.$shorname,
+        'separate_items_with_commas'    => 'Separate '.$shorname.'s with commas',
+        'add_or_remove_items'           => 'Add or remove '.$shorname.'s',
+        'choose_from_most_used'         => 'Choose from most used '.$shorname.'s'
+    );
     $taxarr = array(
-        'label'                         => 'taxcpt',
+        'label'                         => $shorname,
         'labels'                        => $taxlabels,
         'public'                        => true,
         'hierarchical'                  => true,
@@ -32,36 +35,36 @@ function register_jobs() {
         'show_ui'                       => true,
         'rewrite'                       => true,
     );
-    register_taxonomy( 'taxcpt', 'cpt', $taxarr );
+    register_taxonomy( 'taxonomy_name', 'custom_post_type', $taxarr );
 
-    register_post_type( 'cpt',
-    array(
-        'labels'                => array(
-            'name' => 'cpt',
-            'singular_name' => 'cpt',
-            'add_new' => 'Add New',
-            'add_new_item' => 'Add New',
-            'edit_item' => 'Edit',
-            'new_item' => 'New',
-            'all_items' => 'All',
-            'view_item' => 'View',
-            'search_items' => 'Search',
-            'not_found' =>  'Not found',
-            'not_found_in_trash' => 'No found in Trash',
-            'parent_item_colon' => '',
-            'menu_name' => 'cpt'
-            ),
-        'public'                => true,
-        'show_ui'               => true,
-        'show_in_menu'          => true,
-        'supports'              => array( 'title', 'editor', 'thumbnail' ),
-        'rewrite'               => array( 'slug' => 'cpt' ),
-        'has_archive'           => true,
-        'hierarchical'          => true,
-        'show_in_nav_menus'     => true,
-        'capability_type'       => 'page',
-        'query_var'             => true,
-//        'menu_icon' => get_bloginfo('stylesheet_directory') . '/images/cpt-icon.png',
-    ));
-flush_rewrite_rules();
+    register_post_type( 'custom_post_type',
+                       array(
+                           'labels'                => array(
+                               'name' => 'Custom Post Type',
+                               'singular_name' => 'Custom Post Type',
+                               'add_new' => 'Add New',
+                               'add_new_item' => 'Add New',
+                               'edit_item' => 'Edit',
+                               'new_item' => 'New',
+                               'all_items' => 'All',
+                               'view_item' => 'View',
+                               'search_items' => 'Search',
+                               'not_found' =>  'Not found',
+                               'not_found_in_trash' => 'No found in Trash',
+                               'parent_item_colon' => '',
+                               'menu_name' => 'Custom Post Type'
+                           ),
+                           'public'                => true,
+                           'show_ui'               => true,
+                           'show_in_menu'          => true,
+                           'supports'              => array( 'title', 'editor', 'thumbnail' ),
+                           'rewrite'               => array( 'slug' => 'permalink' ),
+                           'has_archive'           => true,
+                           'hierarchical'          => true,
+                           'show_in_nav_menus'     => true,
+                           'capability_type'       => 'page',
+                           'query_var'             => true,
+                           'menu_icon'             => 'dashicons-admin-page',
+                       ));
+    flush_rewrite_rules();
 }
