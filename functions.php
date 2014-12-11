@@ -164,7 +164,12 @@ foreach (array('term_description', 'link_description', 'link_notes', 'user_descr
     remove_filter($filter, 'wp_kses_data');
 }
 
-//Google CDN jQuery
+//Custom jQuery
+function tt_local_jquery() { ?>
+<script>window.jQuery || document.write('<script src="'.theme().'js/jquery-1.9.1.js"><\/script>')</script>
+<?php }
+add_action('wp_head', 'tt_local_jquery');
+
 function tt_add_scripts() {
     if (!is_admin()) {
         wp_deregister_script( 'jquery' );
@@ -175,15 +180,15 @@ function tt_add_scripts() {
     wp_enqueue_script('js_init', theme().'/js/init.js', array('jquery'), '', true );
     wp_enqueue_script('googlemaps', '//maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false', array(), '', FALSE );
 
-    wp_register_style('tt_style', theme().'/style/style.css');
-    wp_enqueue_style('tt_style');
+    wp_enqueue_style('animations-css', theme().'/style/animations.min.css');
+    wp_enqueue_style('tt_style', theme().'/style/style.css');
 }
 add_action('wp_enqueue_scripts', 'tt_add_scripts');
 
 function wp_IEhtml5_js () {
     global $is_IE;
     if ($is_IE)
-        echo '<!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><script src="//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->';
+        echo '<!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><script src="//css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]--><!--[if lte IE 9]><link href="'.theme().'/style/animations-ie-fix.css" rel="stylesheet" /><![endif]-->';
 }
 add_action('wp_head', 'wp_IEhtml5_js');
 
