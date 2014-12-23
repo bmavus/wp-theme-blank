@@ -46,6 +46,7 @@
     -ms-background-size: $size;
     -o-background-size: $size;
     background-size: $size;
+    -ms-behavior: url(backgroundsize.min.htc);
 }
 @mixin box-shadow($shadow) {
     -webkit-box-shadow: $shadow;

@@ -329,3 +329,9 @@ if( function_exists('acf_add_options_page') ) {
         'parent_slug' => 'acf-theme-settings',
     ));
 }
+
+//custom ajax-admin.php rewrite
+function new_ajax_admin_url() {
+    add_rewrite_rule('a/(.*)$','wp-admin/admin-ajax.php/$1','top');
+}
+add_action('init', 'new_ajax_admin_url', 10, 0);
