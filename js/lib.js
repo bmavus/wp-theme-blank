@@ -10,17 +10,16 @@ function equalHeight(e){t=0;e.each(function(){th=$(this).height();if(th>t){t=th}
     'use strict';
     $.fn.selbel = function(settings) {
         var defaults = {
-            onChange: function () {},
-            label: ''
+            onChange: function () {}
         },
         options = $.extend(defaults, settings);
 
         return this.each(function () {
             var el = $(this),
-                sb_label = options.label ? '<label>' + options.label + '</label>' : '';
+                sb_label = el.attr("data-label").length > 0 ? '<label>' + el.attr("data-label") + '</label>' : '';
             if (!el.hasClass('selbel')) { el.addClass('selbel'); }
             el.each(function() {
-                $(this).wrap("<span class='selbel_w' />").after(sb_label + '<span>' + $('*:selected', this).text() + '</span>');
+                $(this).wrap("<span class='selbel_w' />").before(sb_label).after('<span>' + $('*:selected', this).text() + '</span>');
             });
             el.change(function() {
                 $(this).next().text($('*:selected', this).text());
