@@ -9,7 +9,9 @@
                 "sourceComments": "none",
                 "outputStyle": "nested"
             },
-            "mikaeljorhult.bracketsPHPLintTools.php-available": true
+            "mikaeljorhult.bracketsPHPLintTools.php-available": true,
+            "brackets-css-color-preview.enabled": true,
+            "hirse.outline.enabled": false
         }
     }
 }
