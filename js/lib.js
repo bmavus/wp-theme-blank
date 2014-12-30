@@ -16,7 +16,7 @@ function equalHeight(e){t=0;e.each(function(){th=$(this).height();if(th>t){t=th}
 
         return this.each(function () {
             var el = $(this),
-                sb_label = el.attr("data-label").length > 0 ? '<label>' + el.attr("data-label") + '</label>' : '';
+                sb_label = el.attr("data-label") !== undefined ? '<label>' + el.attr("data-label") + '</label>' : '';
             if (!el.hasClass('selbel')) { el.addClass('selbel'); }
             if(el.parent().is('.selbel_w')) { return false; }
             el.each(function() {
