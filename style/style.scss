@@ -26,6 +26,8 @@
 //Using @include svg-font-face('FontName', 'font-filename', 400);
 //}
 
+$font: 'Arial', sans-serif;
+
 @mixin border-radius($radius) {
     -webkit-border-radius: $radius;
     -khtml-border-radius: $radius;
@@ -158,17 +160,24 @@
 
 //custom reset
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {display: block}
-audio, canvas, video {display: inline-block;*display: inline;*zoom: 1}
+audio, canvas, video, progress {vertical-align: baseline; display: inline-block;*display: inline;*zoom: 1}
+audio:not([controls]), [hidden], template {display: none;height: 0}
 mark {background: none}
+sub, sup {position: relative;font-size: 75%;line-height: 0;vertical-align: baseline}
+sup {top: -.5em}
+sub {bottom: -.25em}
+pre {overflow: auto}
+code, kbd, pre, samp {font-family: monospace, monospace;font-size: 1em}
 html, body {height: 100%;margin: 0}
 html {
     > body {
         height: auto;
-        min-height: 100%;
+        min-height: 100%
     }
     -webkit-font-smoothing: antialiased;
     -webkit-overflow-scrolling: touch;
     -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none
 }
 a {
     color: #00c2cb;
@@ -178,11 +187,27 @@ a {
         outline: 0 none;
     }
 }
-input, textarea, select {
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='color'],
+input[type='url'],
+input[type='image'],
+input[type='tel'],
+input[type='submit'],
+input[type='file'],
+input[type='range'],
+input[type='reset'],
+input[type='button'],
+input[type='search'],
+button,
+textarea,
+select {
     -webkit-appearance: none;
     outline: 0 none;
     @include box-sizing(border-box);
 }
+
 * {margin: 0;padding: 0;border-collapse: collapse; -webkit-tap-highlight-color: rgba(0,0,0,0)}
 img {max-width: 100%;height: auto;width: auto\9}
 a > img {border: 0}
@@ -232,12 +257,12 @@ strong {font-weight: 700}
     }
 }
 input[type="submit"] {cursor: pointer}
-textarea, button, a, input {@include transition(0.5s)}
+textarea, button, a, input {@include transition(.5s, all)}
 
 body {
     position: relative;
-    font: 400 14px / 20px "Arial", sans-serif;
-    color: #707070;
+    font: 400 14px/20px $font;
+    color: #2e3a4a;
 }
 .row {
     margin: 0 auto;
@@ -318,7 +343,7 @@ footer {
 .form-row {
     label {
         display: block;
-        font: 400 16px "Proxima nova";
+        font: 400 16px $font;
         padding: 0 0 10px
     }
     input[type="text"],
