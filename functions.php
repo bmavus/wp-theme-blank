@@ -165,11 +165,6 @@ foreach (array('term_description', 'link_description', 'link_notes', 'user_descr
 }
 
 //Custom jQuery
-function tt_local_jquery() { ?>
-<script>window.jQuery || document.write('<script src="<?php echo theme(); ?>/js/jquery-1.9.1.js"><\/script>')</script>
-<?php }
-add_action('wp_head', 'tt_local_jquery');
-
 function tt_add_scripts() {
     if (!is_admin()) {
         wp_deregister_script( 'jquery' );
