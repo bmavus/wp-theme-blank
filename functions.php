@@ -140,7 +140,9 @@ function voodoo_deregister_styles() {
 //custom SEO title
 function seo_title(){
     global $post;
-    if($post->post_parent) {
+    if(is_404()) {
+        echo '404 Page not found - ';
+    } elseif($post->post_parent) {
         $parent_title = get_the_title($post->post_parent);
         echo wp_title('-', true, 'right') . $parent_title.' - ';
     } elseif(class_exists('Woocommerce') && is_shop()) {
