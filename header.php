@@ -19,6 +19,7 @@ ob_start('ob_html_compress');
 <meta name="HandheldFriendly" content="True"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" /> -->
 <?php wp_head(); ?>
+<script>window.jQuery || document.write('<script src="<?php echo theme(); ?>/js/jquery-1.9.1.js"><\/script>');</script>
 <?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
 </head>
 <body <?php body_class(); ?>>
