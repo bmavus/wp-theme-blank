@@ -1,5 +1,3 @@
-//sass --watch sass:css --style compressed
-//sass --watch sass:css --style compact
 @mixin declare-font-face($font-family, $font-filename, $font-weight : normal, $font-style :normal) {
     @font-face {
         font-family: '#{$font-family}';

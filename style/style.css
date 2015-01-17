@@ -1,38 +1,75 @@
+/* line 160, D:/AppServ/Загрузки/wptheme/style/style.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
   display: block; }
 
-audio, canvas, video {
+/* line 161, D:/AppServ/Загрузки/wptheme/style/style.scss */
+audio, canvas, video, progress {
+  vertical-align: baseline;
   display: inline-block;
   *display: inline;
   *zoom: 1; }
 
+/* line 162, D:/AppServ/Загрузки/wptheme/style/style.scss */
+audio:not([controls]), [hidden], template {
+  display: none;
+  height: 0; }
+
+/* line 163, D:/AppServ/Загрузки/wptheme/style/style.scss */
 mark {
   background: none; }
 
+/* line 164, D:/AppServ/Загрузки/wptheme/style/style.scss */
+sub, sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline; }
+
+/* line 165, D:/AppServ/Загрузки/wptheme/style/style.scss */
+sup {
+  top: -0.5em; }
+
+/* line 166, D:/AppServ/Загрузки/wptheme/style/style.scss */
+sub {
+  bottom: -0.25em; }
+
+/* line 167, D:/AppServ/Загрузки/wptheme/style/style.scss */
+pre {
+  overflow: auto; }
+
+/* line 168, D:/AppServ/Загрузки/wptheme/style/style.scss */
+code, kbd, pre, samp {
+  font-family: monospace, monospace;
+  font-size: 1em; }
+
+/* line 169, D:/AppServ/Загрузки/wptheme/style/style.scss */
 html, body {
   height: 100%;
   margin: 0; }
 
+/* line 170, D:/AppServ/Загрузки/wptheme/style/style.scss */
 html {
   -webkit-font-smoothing: antialiased;
   -webkit-overflow-scrolling: touch;
-  -webkit-text-size-adjust: none; }
+  -webkit-text-size-adjust: none;
+  -ms-text-size-adjust: none; }
+  /* line 171, D:/AppServ/Загрузки/wptheme/style/style.scss */
   html > body {
     height: auto;
     min-height: 100%; }
 
+/* line 180, D:/AppServ/Загрузки/wptheme/style/style.scss */
 a {
-  color: #67838c;
+  color: #00c2cb;
   text-decoration: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   outline: 0 none; }
+  /* line 184, D:/AppServ/Загрузки/wptheme/style/style.scss */
   a:hover {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     outline: 0 none; }
 
-input, textarea, select {
+/* line 203, D:/AppServ/Загрузки/wptheme/style/style.scss */
+input[type='text'], input[type='email'], input[type='password'], input[type='color'], input[type='url'], input[type='image'], input[type='tel'], input[type='submit'], input[type='file'], input[type='range'], input[type='reset'], input[type='button'], input[type='search'], button, textarea, select {
   -webkit-appearance: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   outline: 0 none;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -40,30 +77,40 @@ input, textarea, select {
   -o-box-sizing: border-box;
   box-sizing: border-box; }
 
+/* line 209, D:/AppServ/Загрузки/wptheme/style/style.scss */
 * {
   margin: 0;
   padding: 0;
-  border-collapse: collapse; }
+  border-collapse: collapse;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
+/* line 210, D:/AppServ/Загрузки/wptheme/style/style.scss */
 img {
   max-width: 100%;
-  height: auto; }
+  height: auto;
+  width: auto\9; }
 
+/* line 211, D:/AppServ/Загрузки/wptheme/style/style.scss */
 a > img {
   border: 0; }
 
+/* line 212, D:/AppServ/Загрузки/wptheme/style/style.scss */
 p {
   padding-bottom: 20px; }
 
+/* line 213, D:/AppServ/Загрузки/wptheme/style/style.scss */
 ul, ol {
   list-style: none; }
 
+/* line 214, D:/AppServ/Загрузки/wptheme/style/style.scss */
 #wrap {
   min-height: 100%; }
 
+/* line 217, D:/AppServ/Загрузки/wptheme/style/style.scss */
 .clear {
   clear: both; }
 
+/* line 218, D:/AppServ/Загрузки/wptheme/style/style.scss */
 .cfx:after {
   content: ".";
   display: block;
@@ -72,31 +119,38 @@ ul, ol {
   line-height: 0;
   height: 0; }
 
+/* line 219, D:/AppServ/Загрузки/wptheme/style/style.scss */
 html[xmlns] .cfx {
   display: block; }
 
+/* line 220, D:/AppServ/Загрузки/wptheme/style/style.scss */
 * html .cfx {
   height: 1%; }
 
+/* line 222, D:/AppServ/Загрузки/wptheme/style/style.scss */
 ::-moz-selection {
   color: #fff;
-  background: #6b2e6e; }
+  background: #00c2cb; }
 
+/* line 223, D:/AppServ/Загрузки/wptheme/style/style.scss */
 ::selection {
   color: #fff;
-  background: #6b2e6e; }
+  background: #00c2cb; }
 
+/* line 228, D:/AppServ/Загрузки/wptheme/style/style.scss */
 .valign {
   display: inline-block;
   vertical-align: middle;
   max-width: 98%; }
 
+/* line 229, D:/AppServ/Загрузки/wptheme/style/style.scss */
 .vfix {
   display: inline-block;
   height: 100%;
   vertical-align: middle;
   width: 0; }
 
+/* line 232, D:/AppServ/Загрузки/wptheme/style/style.scss */
 .valign2 {
   position: relative;
   top: 50%;
@@ -106,21 +160,30 @@ html[xmlns] .cfx {
   -o-transform: translateY(-50%);
   transform: translateY(-50%); }
 
+/* line 235, D:/AppServ/Загрузки/wptheme/style/style.scss */
 .alignleft {
   float: left; }
 
+/* line 236, D:/AppServ/Загрузки/wptheme/style/style.scss */
 .alignright {
   float: right; }
 
+/* line 237, D:/AppServ/Загрузки/wptheme/style/style.scss */
 .aligncenter {
   margin-left: auto;
   margin-right: auto; }
 
+/* line 238, D:/AppServ/Загрузки/wptheme/style/style.scss */
 img.aligncenter {
   margin-left: auto;
   margin-right: auto;
   display: block; }
 
+/* line 240, D:/AppServ/Загрузки/wptheme/style/style.scss */
+.googlemap img {
+  max-width: none; }
+
+/* line 242, D:/AppServ/Загрузки/wptheme/style/style.scss */
 hr {
   background: #e1e1e1;
   height: 1px;
@@ -129,9 +192,11 @@ hr {
   clear: both;
   margin: 20px 0; }
 
+/* line 250, D:/AppServ/Загрузки/wptheme/style/style.scss */
 strong {
   font-weight: 700; }
 
+/* line 252, D:/AppServ/Загрузки/wptheme/style/style.scss */
 .fullframe {
   height: 0;
   margin: 0;
@@ -140,6 +205,7 @@ strong {
   padding-top: 30px;
   position: relative;
   z-index: 0; }
+  /* line 254, D:/AppServ/Загрузки/wptheme/style/style.scss */
   .fullframe > iframe, .fullframe > object, .fullframe > embed {
     height: 100%;
     left: 0;
@@ -148,29 +214,35 @@ strong {
     width: 100%;
     z-index: -1; }
 
+/* line 257, D:/AppServ/Загрузки/wptheme/style/style.scss */
 input[type="submit"] {
   cursor: pointer; }
 
+/* line 258, D:/AppServ/Загрузки/wptheme/style/style.scss */
 textarea, button, a, input {
-  -webkit-transition: all 0.5s ease 0s;
-  -moz-transition: all 0.5s ease 0s;
-  -ms-transition: all 0.5s ease 0s;
-  -o-transition: all 0.5s ease 0s;
-  transition: all 0.5s ease 0s; }
+  -webkit-transition: 0.5s all ease;
+  -moz-transition: 0.5s all ease;
+  -ms-transition: 0.5s all ease;
+  -o-transition: 0.5s all ease;
+  transition: 0.5s all ease; }
 
+/* line 260, D:/AppServ/Загрузки/wptheme/style/style.scss */
 body {
   position: relative;
-  font: 400 14px/20px "Arial", sans-serif;
-  color: #707070; }
+  font: 400 14px/20px 'Arial', sans-serif;
+  color: #2e3a4a; }
 
+/* line 265, D:/AppServ/Загрузки/wptheme/style/style.scss */
 .row {
   margin: 0 auto;
   max-width: 96%;
   position: relative;
   width: 960px; }
 
+/* line 273, D:/AppServ/Загрузки/wptheme/style/style.scss */
 .wpcf7 .screen-reader-response {
   display: none !important; }
+/* line 274, D:/AppServ/Загрузки/wptheme/style/style.scss */
 .wpcf7 .wpcf7-not-valid-tip {
   background: #eee;
   color: #ff5f5f;
@@ -180,6 +252,7 @@ body {
   right: 0;
   text-align: center;
   top: 0; }
+/* line 284, D:/AppServ/Загрузки/wptheme/style/style.scss */
 .wpcf7 .wpcf7-response-output {
   background: #fff;
   padding: 2%;
@@ -188,19 +261,24 @@ body {
   display: none;
   margin: 20px 0;
   text-align: center; }
+  /* line 292, D:/AppServ/Загрузки/wptheme/style/style.scss */
   .wpcf7 .wpcf7-response-output.wpcf7-validation-errors {
     background: #FF5F5F;
     color: #fff; }
+  /* line 296, D:/AppServ/Загрузки/wptheme/style/style.scss */
   .wpcf7 .wpcf7-response-output.wpcf7-mail-sent-ng {
     background: #1091ae;
     color: #fff; }
+  /* line 300, D:/AppServ/Загрузки/wptheme/style/style.scss */
   .wpcf7 .wpcf7-response-output.wpcf7-mail-sent-ok {
     background: #16A085;
     color: #fff; }
+/* line 305, D:/AppServ/Загрузки/wptheme/style/style.scss */
 .wpcf7 .wpcf7-form-control-wrap {
   display: block !important;
   position: relative; }
 
+/* line 311, D:/AppServ/Загрузки/wptheme/style/style.scss */
 footer {
   position: absolute;
   right: 0;
@@ -208,14 +286,307 @@ footer {
   bottom: 0;
   overflow: hidden; }
 
-@media screen and (max-width: 1024px) { }
+/* WooCommerce Custom Styles
+#customer_details {
+    margin: 30px 0 0;
+}
+.col2-set {
+    &:after {
+        clear: both;
+        content: '.';
+        font: 400 0/0 'Arial';
+        display: block;
+    }
+    .col-1 {
+        float: left
+    }
+    .col-2 {
+        float: right
+    }
+    > div {
+        width: 49%;
+    }
+}
 
-@media screen and (max-width: 960px) { }
+.form-row {
+    label {
+        display: block;
+        font: 400 16px $font;
+        padding: 0 0 10px
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+        border: 1px solid #eee;
+        @include border-radius(5px);
+        color: #555;
+        display: block;
+        font: 400 14px/40px $font;
+        height: 40px;
+        padding: 0 20px;
+        width: 100%;
+        &:focus {
+            border-color: #4f91cd;
+            color: #4f91cd;
+        }
+    }
+    textarea {
+        height: 130px;
+        line-height: 20px;
+        overflow: hidden;
+        padding: 10px;
+        resize: none;
+    }
+    abbr {
+        border: 0;
+        color: #e74c3c;
+        font-size: 16px;
+    }
+    input#billing_state + span {
+        display: none;
+    }
+}
+.woocommerce-error {
+    margin: 0;
+    li {
+        background: #fff;
+        border: 1px solid #ef4036;
+        @include border-radius(5px);
+        color: #ef4036 !important;
+        display: block;
+        font: 400 14px/38px $font !important;
+        list-style: none !important;
+        margin: 20px 0 0;
+        text-align: center;
+    }
+}
+.shop_table {
+    width: 100%;
+    tr {
+        th {
+            background: #4f91cd;
+            border: 1px solid #3979b2;
+            color: #fff;
+            font: 700 24px $proxima;
+            padding: 10px;
+            text-transform: uppercase;
+            &.product-remove {
+                border-right: 0;
+                a.remove {
+                    background: #ef4036;
+                    color: #fff;
+                    display: block;
+                    font: 700 20px/21px $font;
+                    margin: 0 auto;
+                    text-align: center;
+                    text-decoration: none;
+                    width: 21px;
+                }
+            }
+            &.product-thumbnail {
+                border-left: 0
+            }
+        }
+        td {
+            background: #fff;
+            border: 1px solid #3979b2;
+            padding: 10px;
+            p {padding: 0}
+            &.product-thumbnail {
+                padding: 0;
+                width: 90px;
+                a, img {display: block}
+            }
+            &.product-price {
+                text-align: center;
+            }
+            &.product-quantity {
+                text-align: center;
+                width: 120px;
+                .quantity {
+                    display: inline-block;
+                    position: relative;
+                    width: 100px;
+                    input[type="button"] {
+                        background: #77bd1f;
+                        border: 0;
+                        color: #fff;
+                        cursor: pointer;
+                        font-weight: 700;
+                        height: 20px;
+                        line-height: 20px;
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        width: 20px;
+                        &.minus {
+                            bottom: 0;
+                            top: auto;
+                        }
+                    }
+                    input[type="number"] {
+                        border: 1px solid #eee;
+                        @include border-radius(5px);
+                        color: #555;
+                        display: block;
+                        font: 400 14px/40px $font;
+                        height: 40px;
+                        padding: 0 20px;
+                        width: 100%;
+                        -moz-appearance:textfield;
+                        &::-webkit-outer-spin-button,
+                        &::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                        }
+                        &:focus {
+                            border-color: #598e17;
+                            color: #598e17
+                        }
+                    }
+                }
+            }
+            &.actions {
+                border: 0;
+                text-align: right;
+                padding: 10px 0;
+            }
+        }
+    }
+}
+.cart-collaterals {
+    table {
+        table-layout: fixed;
+        text-align: left;
+        max-width: 100%;
+        width: 540px;
+        td {
+            padding: 10px;
+            font-size: 16px
+        }
+    }
+    .cart_totals {
+        &:after {
+            clear: both;
+            content: '.';
+            font: 400 0/0 'Arial';
+            display: block;
+        }
+    }
+}
+.woocommerce-message {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    display: block;
+    margin: 0 0 20px;
+    padding: 20px;
+    vertical-align: middle;
+    .button {
+        margin-right: 20px;
+    }
+}
+#payment {
+    margin-top: 30px;
+    .payment_methods {
+        margin: 0 0 30px;
+        li {
+            list-style: none;
+            input {
+                display: none;
+                & + label {
+                    background: #eee;
+                    color: #4f91cd;
+                    cursor: pointer;
+                    display: inline-block;
+                    font: 500 15px/40px $font;
+                    height: 40px;
+                    letter-spacing: 1.666px;
+                    margin-bottom: 20px;
+                    max-width: 100%;
+                    padding: 0 20px;
+                    text-decoration: none;
+                    width: 310px;
+                    &:hover {
+                        background: #3979b2;
+                    }
+                    img {
+                        float: right;
+                        position: relative;
+                        right: -10px;
+                        top: 8px
+                    }
+                }
+                &:checked {
+                    & + label {
+                        background: #4f91cd;
+                        color: #fff
+                    }
+                }
+            }
+        }
+    }
+}
 
-@media screen and (max-width: 768px) { }
+/* End WooCommerce */
+/* line 562, D:/AppServ/Загрузки/wptheme/style/style.scss */
+.selbel_w {
+  position: relative;
+  display: block;
+  width: 100%;
+  font: 400 14px/40px 'Arial', sans-serif;
+  height: 40px; }
+  /* line 568, D:/AppServ/Загрузки/wptheme/style/style.scss */
+  .selbel_w select {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+    display: block;
+    z-index: 1;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; }
+    /* line 577, D:/AppServ/Загрузки/wptheme/style/style.scss */
+    .selbel_w select + span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #fff;
+      color: #555;
+      padding: 0 10px;
+      -webkit-border-radius: 5px;
+      -khtml-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      border-radius: 5px;
+      border: 1px solid #eee; }
+      /* line 588, D:/AppServ/Загрузки/wptheme/style/style.scss */
+      .selbel_w select + span:after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 9px 5px 0 5px;
+        border-color: #555 transparent transparent transparent;
+        position: absolute;
+        right: 13px;
+        top: 16px; }
+      /* line 599, D:/AppServ/Загрузки/wptheme/style/style.scss */
+      .selbel_w select + span:before {
+        background: #eee;
+        bottom: 7px;
+        content: "";
+        position: absolute;
+        right: 35px;
+        top: 7px;
+        width: 1px; }
+      /* line 608, D:/AppServ/Загрузки/wptheme/style/style.scss */
+      .selbel_w select + span.err {
+        border-color: #ef4036; }
+    /* line 612, D:/AppServ/Загрузки/wptheme/style/style.scss */
+    .selbel_w select option {
+      padding: 5px; }
 
-@media screen and (max-width: 640px) { }
 
-@media screen and (max-width: 480px) { }
-
-@media screen and (max-width: 320px) { }
+/*# sourceMappingURL=style.css.map */
