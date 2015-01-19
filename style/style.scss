@@ -625,10 +625,13 @@ footer {
 @media screen and (max-width: 320px) {
 
 }
-// SweetAlert
-// 2014 (c) - Tristan Edwards
-// github.com/t4t5/sweetalert
 
+// SweetAlert
+// github.com/t4t5/sweetalert
+$btnBlue: #AEDEF4;
+$btnGray: #D0D0D0;
+$width: 478px;
+$padding: 17px;
 .sweet-overlay {
     background-color: rgba(black, 0.4);
     @include position(fixed);
@@ -636,8 +639,6 @@ footer {
     z-index: 10000
 }
 .sweet-alert {
-    $width: 478px;
-    $padding: 17px;
     background-color: white;
     font-family: $font;
     width: $width;
@@ -684,8 +685,6 @@ footer {
         line-height: normal;
     }
     button {
-        $btnBlue: #AEDEF4;
-        $btnGray: #D0D0D0;
         background-color: $btnBlue;
         color: white;
         border: none;
@@ -698,200 +697,197 @@ footer {
         cursor: pointer;
         &:focus {
             outline: none;
-            $sw_b = 0 0 2px rgba(128, 179, 235, 0.5), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
-            @include box-shadow($sw_b);
-        }
+            @include box-shadow(#{0 0 2px rgba(128, 179, 235, 0.5), inset 0 0 0 1px rgba(0, 0, 0, 0.05)});
+    }
+    &:hover {
+        background-color: darken($btnBlue, 3%);
+    }
+    &:active {
+        background-color: darken($btnBlue, 10%);
+    }
+    &.cancel {
+        background-color: $btnGray;
         &:hover {
-            background-color: darken($btnBlue, 3%);
+            background-color: darken($btnGray, 3%);
         }
         &:active {
-            background-color: darken($btnBlue, 10%);
+            background-color: darken($btnGray, 10%);
         }
-        &.cancel {
-            background-color: $btnGray;
-            &:hover {
-                background-color: darken($btnGray, 3%);
-            }
-            &:active {
-                background-color: darken($btnGray, 10%);
-            }
-            // Cancel button should keep the same style
-            &:focus {
-                $sw_b2 = rgba(197, 205, 211, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.0470588) 0px 0px 0px 1px inset !important;
-                @include box-shadow($sw_b2);
-            }
+        // Cancel button should keep the same style
+        &:focus {
+            @include box-shadow(#{rgba(197, 205, 211, 0.8) 0px 0px 2px, rgba(0, 0, 0, 0.0470588) 0px 0px 0px 1px inset !important});
+    }
+}
+// Removes selection outline in Firefox
+    &::-moz-focus-inner {
+        border: 0;
+    }
+}
+// Only show focus-style when there is multiple choice of actions
+&[data-has-cancel-button=false] button {
+    @include box-shadow(none !important);
+}
+.icon {
+    $red:         #F27474;
+    $orange:     #F8BB86;
+    $blue:         #C9DAE1;
+    $green:     #A5DC86;
+    width: 80px;
+    height: 80px;
+    border: 4px solid gray;
+    @include border-radius(50%);
+    margin: 20px auto;
+    padding: 0;
+    position: relative;
+    @include box-sizing(content-box);
+    &.error {
+        border-color: $red;
+        .x-mark {
+            position: relative;
+            display: block;
         }
-        // Removes selection outline in Firefox
-        &::-moz-focus-inner {
-            border: 0;
+        .line {
+            position: absolute;
+            height: 5px;
+            width: 47px;
+            background-color: $red;
+            display: block;
+            top: 37px;
+            border-radius: 2px;
+            &.left {
+                @include transform(rotate(45deg));
+                left: 17px;
+            }
+            &.right {
+                @include transform(rotate(-45deg));
+                right: 16px;
+            }
         }
     }
-
-    // Only show focus-style when there is multiple choice of actions
-    &[data-has-cancel-button=false] button {
-        @include box-shadow(none !important);
+    &.warning {
+        border-color: $orange;
+        .body { // Exclamation mark body
+            position: absolute;
+            width: 5px;
+            height: 47px;
+            left: 50%;
+            top: 10px;
+            border-radius: 2px;
+            margin-left: -2px;
+            background-color: $orange;
+        }
+        .dot { // Exclamation mark dot
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            margin-left: -3px;
+            left: 50%;
+            bottom: 10px;
+            background-color: $orange;
+        }
     }
-    .icon {
-        $red:         #F27474;
-        $orange:     #F8BB86;
-        $blue:         #C9DAE1;
-        $green:     #A5DC86;
-        width: 80px;
-        height: 80px;
-        border: 4px solid gray;
-        @include border-radius(50%);
-        margin: 20px auto;
-        padding: 0;
-        position: relative;
-        box-sizing: content-box;
-        &.error {
-            border-color: $red;
-            .x-mark {
-                position: relative;
-                display: block;
-            }
-            .line {
-                position: absolute;
-                height: 5px;
-                width: 47px;
-                background-color: $red;
-                display: block;
-                top: 37px;
-                border-radius: 2px;
-                &.left {
-                    @include transform(rotate(45deg));
-                    left: 17px;
-                }
-                &.right {
-                    @include transform(rotate(-45deg));
-                    right: 16px;
-                }
-            }
+    &.info {
+        border-color: $blue;
+        &::before { // i-letter body
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 29px;
+            left: 50%;
+            bottom: 17px;
+            border-radius: 2px;
+            margin-left: -2px;
+            background-color: $blue;
         }
-        &.warning {
-            border-color: $orange;
-            .body { // Exclamation mark body
-                position: absolute;
-                width: 5px;
-                height: 47px;
-                left: 50%;
-                top: 10px;
-                border-radius: 2px;
-                margin-left: -2px;
-                background-color: $orange;
-            }
-            .dot { // Exclamation mark dot
-                position: absolute;
-                width: 7px;
-                height: 7px;
-                border-radius: 50%;
-                margin-left: -3px;
-                left: 50%;
-                bottom: 10px;
-                background-color: $orange;
-            }
+        &::after { // i-letter dot
+            content: "";
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            margin-left: -3px;
+            top: 19px;
+            background-color: $blue;
         }
-        &.info {
-            border-color: $blue;
-            &::before { // i-letter body
-                content: "";
-                position: absolute;
-                width: 5px;
-                height: 29px;
-                left: 50%;
-                bottom: 17px;
-                border-radius: 2px;
-                margin-left: -2px;
-                background-color: $blue;
-            }
-            &::after { // i-letter dot
-                content: "";
-                position: absolute;
-                width: 7px;
-                height: 7px;
-                border-radius: 50%;
-                margin-left: -3px;
-                top: 19px;
-                background-color: $blue;
-            }
+    }
+    &.success {
+        border-color: $green;
+        &::before, &::after { // Emulate moving circular line
+            content: '';
+            @include border-radius(50%);
+            position: absolute;
+            width: 60px;
+            height: 120px;
+            background: white;
+            @include transform(rotate(45deg));
         }
-        &.success {
-            border-color: $green;
-            &::before, &::after { // Emulate moving circular line
-                content: '';
-                @include border-radius(50%);
-                position: absolute;
-                width: 60px;
-                height: 120px;
-                background: white;
+        &::before {
+            border-radius: 120px 0 0 120px;
+            top: -7px;
+            left: -33px;
+            @include transform(rotate(-45deg));
+            -webkit-transform-origin: 60px 60px;
+            transform-origin: 60px 60px;
+        }
+        &::after {
+            border-radius: 0 120px 120px 0;
+            top: -11px;
+            left: 30px;
+            @include transform(rotate(-45deg));
+            -webkit-transform-origin: 0px 60px;
+            transform-origin: 0px 60px;
+        }
+        .placeholder { // Ring
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba($green, 0.2);
+            @include border-radius(50%);
+            @include box-sizing(content-box);
+            position: absolute;
+            left: -4px;
+            top: -4px;
+            z-index: 2;
+        }
+        .fix {    // Hide corners left from animation
+            width: 5px;
+            height: 90px;
+            background-color: white;
+            position: absolute;
+            left: 28px;
+            top: 8px;
+            z-index: 1;
+            @include transform(rotate(-45deg));
+        }
+        .line {
+            height: 5px;
+            background-color: $green;
+            display: block;
+            border-radius: 2px;
+            position: absolute;
+            z-index: 2;
+            &.tip {
+                width: 25px;
+                left: 14px;
+                top: 46px;
                 @include transform(rotate(45deg));
             }
-            &::before {
-                border-radius: 120px 0 0 120px;
-                top: -7px;
-                left: -33px;
-                @include transform(rotate(-45deg));
-                -webkit-transform-origin: 60px 60px;
-                transform-origin: 60px 60px;
-            }
-            &::after {
-                border-radius: 0 120px 120px 0;
-                top: -11px;
-                left: 30px;
-                @include transform(rotate(-45deg));
-                -webkit-transform-origin: 0px 60px;
-                transform-origin: 0px 60px;
-            }
-            .placeholder { // Ring
-                width: 80px;
-                height: 80px;
-                border: 4px solid rgba($green, 0.2);
-                @include border-radius(50%);
-                @include box-sizing:(content-box);
-                position: absolute;
-                left: -4px;
-                top: -4px;
-                z-index: 2;
-            }
-            .fix {    // Hide corners left from animation
-                width: 5px;
-                height: 90px;
-                background-color: white;
-                position: absolute;
-                left: 28px;
-                top: 8px;
-                z-index: 1;
+            &.long {
+                width: 47px;
+                right: 8px;
+                top: 38px;
                 @include transform(rotate(-45deg));
             }
-            .line {
-                height: 5px;
-                background-color: $green;
-                display: block;
-                border-radius: 2px;
-                position: absolute;
-                z-index: 2;
-                &.tip {
-                    width: 25px;
-                    left: 14px;
-                    top: 46px;
-                    @include transform(rotate(45deg));
-                }
-                &.long {
-                    width: 47px;
-                    right: 8px;
-                    top: 38px;
-                    @include transform(rotate(-45deg));
-                }
-            }
-        }
-        &.custom {
-            background-size: contain;
-            @include border-radius(0);
-            border: none;
-            background-position: center center;
-            background-repeat: no-repeat;
         }
     }
+    &.custom {
+        background-size: contain;
+        @include border-radius(0);
+        border: none;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+}
 
 }
 /*
@@ -899,14 +895,14 @@ footer {
 */
 // Modal animation
 @include keyframes(showSweetAlert) {
-    0%         { transform: scale(0.7);     -webkit-transform: scale(0.7);     }
+    0%         { transform: scale(0.7);-webkit-transform: scale(0.7);}
     45%     { transform: scale(1.05); -webkit-transform: scale(1.05); }
-    80%     { transform: scale(0.95); -webkit-tranform: scale(0.95);     }
-    100%     { transform: scale(1);         -webkit-transform: scale(1);         }
+    80%     { transform: scale(0.95); -webkit-tranform: scale(0.95);}
+    100%     { transform: scale(1);-webkit-transform: scale(1);}
 }
 @include keyframes(hideSweetAlert) {
-    0%         { transform: scale(1);         -webkit-transform: scale(1);         }
-    100%     { transform: scale(0.5);     -webkit-transform: scale(0.5);     }
+    0%         { transform: scale(1);-webkit-transform: scale(1);}
+    100%     { transform: scale(0.5);-webkit-transform: scale(0.5);}
 }
 .showSweetAlert {
     @include animation('showSweetAlert 0.3s');
