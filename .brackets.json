@@ -10,7 +10,8 @@
                 "outputStyle": "nested"
             },
             "mikaeljorhult.bracketsPHPLintTools.php-available": true,
-            "brackets-css-color-preview.enabled": true
+            "brackets-css-color-preview.enabled": true,
+            "linting.collapsed": false
         }
     }
 }

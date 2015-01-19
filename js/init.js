@@ -1,10 +1,7 @@
 /*jslint browser: true, white: true*/
 /*global $, jQuery, FastClick*/
 $ = jQuery;
-
 var hash = window.location.hash;
-var ww = document.body.clientWidth;
-
 var mob = false;
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Windows Phone|ZuneWP7|Nokia|Opera Mini/i.test(navigator.userAgent)) { var mob = true; }
 var supportsTouch = false;
@@ -13,6 +10,10 @@ var TouchClickEvent = supportsTouch ? 'touchstart' : 'click';
 function footer(e){
     "use strict";
     $('.footix').height($('footer').outerHeight());
+}
+function ww(){
+    'use strict';
+    return document.body.clientWidth;
 }
 $(document).ready(function () {
     "use strict";
