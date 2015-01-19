@@ -26,6 +26,10 @@ function my_remove_recent_comments_style() {
 }
 update_option('image_default_link_type','none');
 update_option('uploads_use_yearmonth_folders', 0);
+if(class_exists('Wp_Scss_Settings')) {
+    $wpscss = get_option('wpscss_options');
+    if(empty($wpscss['css_dir']) && empty($wpscss['scss_dir'])) update_option('wpscss_options', array('css_dir' => '/style/', 'scss_dir' => '/style/', 'compiling_options' => 'scss_formatter_compressed'));
+}
 
 add_filter( 'show_admin_bar', '__return_false' );
 
