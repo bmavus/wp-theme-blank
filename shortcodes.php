@@ -228,7 +228,6 @@ function custom_register_new_user() {
     exit();
 }
 
-
 /* google map shortcode
     *** Using [googlemap id="somemapid" coordinates="1 ,1" zoom="17" height="500px" infobox="<p>Some Infobox Content</p>"]
     *** if need street view, please add 'streetview="true"';
@@ -250,8 +249,8 @@ function google_map_js($atts) {
         'streetview'        => ''
     ), $atts));
     $mapid = str_replace('-','_',$id);
-    $map = '';
-    $map .= '<div class="googlemap" id="'.$id.'" '.($height?'style="height:'.$height.'"':'').'></div><script>
+
+    $map = !$streetview?'<div class="googlemap" id="'.$id.'" '.($height?'style="height:'.$height.'"':'').'></div><script>
 var '.$mapid.';
 function initialize_'.$mapid.'() {
     var myLatlng = new google.maps.LatLng('.$coordinates.');
@@ -281,8 +280,7 @@ function initialize_'.$mapid.'() {
     });
 };
 google.maps.event.addDomListener(window, "load", initialize_'.$mapid.');
-</script>';
-    $map .= $streetview?do_streetView_map($id, $coordinates, $height):'';
+</script>':do_streetView_map($id, $coordinates, $height);
     return $map;
 }
 add_shortcode('googlemap', 'google_map_js');
