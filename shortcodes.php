@@ -280,30 +280,50 @@ function initialize_'.$mapid.'() {
     });
 };
 google.maps.event.addDomListener(window, "load", initialize_'.$mapid.');
-</script>':do_streetView_map($id, $coordinates, $height);
+</script>':do_streetView_map($id, $coordinates, $height, $streetview);
     return $map;
 }
 add_shortcode('googlemap', 'google_map_js');
 
-function do_streetView_map($id, $pos, $height){
+function do_streetView_map($id, $pos, $height, $streetview){
     return '<div class="googlemap" id="street_'.$id.'" '.($height?'style="height:'.$height.'"':'').'></div><script>
     function street_init_'.$id.'() {
-        var fenway = new google.maps.LatLng('.$pos.');
-        var mapOptions = {
-            center: fenway,
-            zoom: 14
-        };
-        var street_'.$id.' = new google.maps.Map(document.getElementById("street_'.$id.'"), mapOptions);
-        var panoramaOptions = {
-            position: fenway,
-            pov: {
-                heading: 1,
-                pitch: 1
-            }
-        };
-        var panorama = new google.maps.StreetViewPanorama(document.getElementById("street_'.$id.'"), panoramaOptions);
-        street_'.$id.'.setStreetView(panorama);
+
+
+    var geocoder =  new google.maps.Geocoder();
+    geocoder.geocode( { "address": "'.$streetview.'" }, function(results, status) {
+        var lookTo = results[0].geometry.location;
+        if (status == google.maps.GeocoderStatus.OK) {
+              var panoOptions = {
+                position: lookTo,
+                panControl: false,
+                addressControl: false,
+                linksControl: false,
+                zoomControlOptions: false
+              };
+              var pano = new  google.maps.StreetViewPanorama(document.getElementById("street_'.$id.'"),panoOptions);
+              var service = new google.maps.StreetViewService;
+              service.getPanoramaByLocation(pano.getPosition(), 50, function(panoData) {
+                if (panoData != null) {
+                  var panoCenter = panoData.location.latLng;
+                  var heading = google.maps.geometry.spherical.computeHeading(panoCenter, lookTo);
+                  var pov = pano.getPov();
+                  pov.heading = heading;
+                  pano.setPov(pov);
+                  var marker = new google.maps.Marker({
+                    map: pano,
+                    position: lookTo
+                  });
+                } else {
+                  alert("Not Found");
+                }
+              });
+        } else {
+            alert("Could not find your address");
+        }
+    });
     }
+
     google.maps.event.addDomListener(window, "load", street_init_'.$id.');</script>';
 }
 
