@@ -70,9 +70,9 @@ function my_theme_register_required_plugins() {
             'required'  => false,
         ),
         array(
-            'name'      => 'WP-SCSS',
-            'slug'      => 'wp-scss',
-            'required'  => false,
+            'name'      => 'AssetsMinify',
+            'slug'      => 'assetsminify',
+            'required'  => true,
         ),
         array(
             'name'      => 'WP No Category Base',

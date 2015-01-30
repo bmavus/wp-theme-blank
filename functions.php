@@ -24,8 +24,15 @@ function my_remove_recent_comments_style() {
     global $wp_widget_factory;
     remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
 }
+
 update_option('image_default_link_type','none');
 update_option('uploads_use_yearmonth_folders', 0);
+update_option('permalink_structure', '/%category%/%postname%/');
+
+if(class_exists('AssetsMinifyInit') || class_exists('AssetsMinifyAdmin')) {
+    update_option('am_async_flag', 0);
+}
+
 if(class_exists('Wp_Scss_Settings')) {
     $wpscss = get_option('wpscss_options');
     if(empty($wpscss['css_dir']) && empty($wpscss['scss_dir'])) update_option('wpscss_options', array('css_dir' => '/style/', 'scss_dir' => '/style/', 'compiling_options' => 'scss_formatter_compressed'));
@@ -56,16 +63,6 @@ if (!current_user_can('update_plugins')) { // checks to see if current user can 
     add_filter( 'pre_option_update_core', create_function( '$a', "return null;" ) );
 }
 
-//ADD WP CODEX SEARCH FORM TO DASHBOARD HEADER
-function wp_codex_search_form() {
-    echo '<form target="_blank" method="get" action="http://wordpress.org/search/do-search.php" class="alignright" style="margin: 0;position: absolute;right: 250px;z-index: 100000;top: -30px;">
-        <input type="text" onblur="this.value=(this.value==\'\') ? \'Search the Codex\' : this.value;" onfocus="this.value=(this.value==\'Search the Codex\') ? \'\' : this.value;" maxlength="150" value="Search the Codex" name="search" class="text"> <input type="submit" value="Go" class="button" />
-    </form>';
-}
-if ( current_user_can('manage_options') ) {
-    add_filter( 'in_admin_header', 'wp_codex_search_form', 10 );
-}
-
 //register menus
 register_nav_menus(array(
     'head_menu' => 'Main navigation',
@@ -77,8 +74,8 @@ define ('HOME_PAGE_ID', get_option('page_on_front'));
 define ('BLOG_ID', get_option('page_for_posts'));
 define ('POSTS_PER_PAGE', get_option('posts_per_page'));
 if(class_exists('Woocommerce')) :
-define ('SHOP_ID', get_option('woocommerce_shop_page_id'));
-define ('ACCOUNT_ID', get_option('woocommerce_myaccount_page_id'));
+    define ('SHOP_ID', get_option('woocommerce_shop_page_id'));
+    define ('ACCOUNT_ID', get_option('woocommerce_myaccount_page_id'));
 endif;
 /* END: Theme config params */
 
@@ -100,8 +97,6 @@ function new_body_classes( $classes ){
             $tn= str_replace(".php", "", $tmp);
             $classes[] = $tn;
         }
-        global $post;
-        $classes[] = 'page-'.get_post($post)->post_name;
         if (is_active_sidebar('sidebar')) {
             $classes[] = 'with_sidebar';
         }
@@ -135,12 +130,6 @@ function clear_nav_menu_item_id($id, $item, $args) {
     return "";
 }
 
-//Deregister Contact Form 7 styles
-add_action( 'wp_print_styles', 'voodoo_deregister_styles', 100 );
-function voodoo_deregister_styles() {
-    wp_deregister_style( 'contact-form-7' );
-}
-
 //custom SEO title
 function seo_title(){
     global $post;
@@ -170,21 +159,22 @@ foreach (array('term_description', 'link_description', 'link_notes', 'user_descr
     remove_filter($filter, 'wp_kses_data');
 }
 
-//Custom jQuery
-function tt_add_scripts() {
+//Custom JS/Styles
+function tt_add_jscss() {
     if (!is_admin()) {
         wp_deregister_script( 'jquery' );
-        wp_register_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js');
-        wp_enqueue_script( 'jquery' );
     }
-    wp_enqueue_script('lib_min', theme().'/js/lib.js', array('jquery'), '', true );
-    wp_enqueue_script('js_init', theme().'/js/init.js', array('jquery'), '', true );
-    wp_enqueue_script('googlemaps', '//maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false', array(), '', FALSE );
+    wp_enqueue_script('googlemaps', '//maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false', array(), '', FALSE);
+    wp_enqueue_script( 'jquery', get_template_directory_uri().'/js/jquery-1.9.1.js', array(), '', FALSE);
+    wp_enqueue_script('libs', get_template_directory_uri().'/js/lib.js', array('jquery'), '1.0', true);
+    wp_enqueue_script('init', get_template_directory_uri().'/js/init.js', array('jquery'), '1.0', true);
 
-    wp_enqueue_style('animations-css', theme().'/style/animations.min.css');
-    wp_enqueue_style('tt_style', theme().'/style/style.css');
+    wp_deregister_style( 'contact-form-7' );
+
+    wp_enqueue_style('animations', get_template_directory_uri() . '/style/animations.min.css' );
+    wp_enqueue_style('scss', get_template_directory_uri() . '/style/style.scss');
 }
-add_action('wp_enqueue_scripts', 'tt_add_scripts');
+add_action('wp_enqueue_scripts', 'tt_add_jscss');
 
 function wp_IEhtml5_js () {
     global $is_IE;
