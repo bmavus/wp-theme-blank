@@ -268,7 +268,7 @@ body {
     .wpcf7-not-valid-tip {
         background: #eee;
         color: #ff5f5f;
-        font: 500 12px/45px 'Museo Sans';
+        font: 400 12px/45px $font;
         left: 0;
         position: absolute;
         right: 0;
@@ -283,6 +283,7 @@ body {
         display:none;
         margin: 20px 0;
         text-align:center;
+        font: 400 12px/20px $font;
         &.wpcf7-validation-errors {
             background:#FF5F5F;
             color:#fff
@@ -299,6 +300,35 @@ body {
     .wpcf7-form-control-wrap {
         display: block !important;
         position: relative;
+    }
+    .ajax-loader {
+        display: inline-block;
+        margin: 0 -10px 0 10px;
+        vertical-align: middle;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    textarea {
+        margin: 0 auto 17px;
+        width: 100%;
+        border: 0;
+        height: 44px;
+        padding: 0 12px;
+        font: 300 14px $font;
+        display: block;
+        &:focus {
+
+        }
+    }
+
+    textarea {
+        resize: none;
+        overflow: auto;
+        height: 100px;
+        padding: 10px;
+        line-height: 20px
     }
 }
 
