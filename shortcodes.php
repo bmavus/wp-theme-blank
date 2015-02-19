@@ -245,7 +245,7 @@ function google_map_js($atts) {
         'disableDefaultUI'  => 'false',
         'infobox'           => '',
         'satellite'         => '',
-        'tilt'              => ''
+        'tilt'              => '',
         'icon'              => theme().'/images/marker.png',
         'streetview'        => ''
     ), $atts));
