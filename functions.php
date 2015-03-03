@@ -234,6 +234,10 @@ function tt_add_jscss() {
 
     wp_deregister_style( 'contact-form-7' );
 
+    if(QTRANS_INIT) {
+        wp_deregister_style('qtranslate-style');
+    }
+
     wp_enqueue_style('animations', get_template_directory_uri() . '/style/animations.min.css' );
     wp_enqueue_style('scss', get_template_directory_uri() . '/style/style.scss');
 }
@@ -263,9 +267,12 @@ function remove_footer_admin () {
 add_filter('admin_footer_text', 'remove_footer_admin');
 
 if(QTRANS_INIT) {
+    remove_action('wp_head', 'qtranxf_head', 10, 0);
+    remove_action('wp_head', 'qtrans_header', 10, 0);
+
     //convert blogurl
-    function the_home_url() {
-        echo qtrans_convertURL(site_url('/'));
+    function qtrans_home_url($url = '') {
+        return qtrans_convertURL(site_url($url));
     }
     //qTranslate Taxonomies Description Fix
     function qtranslate_edit_taxonomies(){
@@ -284,31 +291,24 @@ if(QTRANS_INIT) {
         }
     }
     add_action('admin_init', 'qtranslate_edit_taxonomies');
-
-    remove_action('wp_head', 'qtrans_header', 10, 0);
-
     add_filter('walker_nav_menu_start_el', 'qtrans_in_nav_el', 10, 4);
     function qtrans_in_nav_el($item_output, $item, $depth, $args){
         $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
         $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
         $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
-
         // Determine integration with qTranslate Plugin
         if (function_exists('qtrans_convertURL')) {
             $attributes .= ! empty( $item->url ) ? ' href="' . qtrans_convertURL(esc_attr( $item->url )) .'"' : '';
         } else {
             $attributes .= ! empty( $item->url ) ? ' href="' . esc_attr( $item->url ) .'"' : '';
         }
-
         $item_output = $args->before;
         $item_output .= '<a'. $attributes .'>';
         $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
         $item_output .= '</a>';
         $item_output .= $args->after;
-
         return $item_output;
     }
-
 }
 
 function remove_default_description($bloginfo) {
