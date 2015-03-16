@@ -332,9 +332,10 @@ function content_btn($atts,$content){
     extract(shortcode_atts(array(
         'text' => 'Learn More',
         'link' => site_url(),
-        'class' => false
+        'class' => false,
+        'target' => false
     ), $atts ));
-    return '<a target="_blank" href="' . $link . '" class="button'.($class?' '.$class:'').'">' . $text . '</a>';
+    return '<a href="' . $link . '" class="button'.($class?' '.$class:'').'" '.($target?'target="'.$target.'"':'').'>' . $text . '</a>';
 }
 add_shortcode("button", "content_btn");
 
