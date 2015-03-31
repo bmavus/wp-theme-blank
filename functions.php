@@ -389,3 +389,43 @@ function new_ajax_admin_url() {
     add_rewrite_rule('a/(.*)$','wp-admin/admin-ajax.php/$1','top');
 }
 add_action('init', 'new_ajax_admin_url', 10, 0);
+
+function get_alt($id){
+    $c_alt = get_post_meta($id, '_wp_attachment_image_alt', true);
+    $c_tit = get_the_title($id);
+    return $c_alt?$c_alt:$c_tit;
+}
+
+function tree_children($absolute = false, $page_id = 0) {
+    global $post;
+    $childlist = get_pages('child_of='.$post->ID);
+    $children = '';
+    if($post->post_parent) {
+        $ancestors = get_post_ancestors($post->ID);
+        $reverse = array_reverse($ancestors);
+        $abs = $reverse[0];
+        $children .= '<ul class="submenu">';
+        $children .= wp_list_pages("title_li=&child_of=".$abs."&echo=0&sort_column=menu_order");
+        $children .= '</ul>';
+        echo $children;
+    } elseif($childlist) {
+        echo '<ul class="submenu">' . wp_list_pages("title_li=&child_of=".$post->ID."&echo=0&sort_column=menu_order") . '</ul>';
+    }
+}
+
+add_filter('widget_categories_args','show_empty_categories_links');
+function show_empty_categories_links($args) {
+    $args['hide_empty'] = 0;
+    return $args;
+}
+
+function cats($pid){
+    $post_categories = wp_get_post_categories($pid);
+    $cats = '';
+    $co = count($post_categories); $i = 1;
+    foreach($post_categories as $c){
+        $cat = get_category($c);
+        $cats .= '<a href="'.get_category_link($cat->term_id).'">'.$cat->name.'</a>' .($i++ != $co?'<span>,</span> ':'');
+    }
+    return $cats;
+}
