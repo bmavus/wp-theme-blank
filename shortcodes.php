@@ -239,10 +239,10 @@ function google_map_js($atts) {
         'coordinates'       => '1, 1',
         'zoom'              => 15,
         'height'            => '350px',
-        'zoomControl'       => 'false',
+        'zoomcontrol'       => 'false',
         'scrollwheel'       => 'false',
-        'scaleControl'      => 'false',
-        'disableDefaultUI'  => 'false',
+        'scalecontrol'      => 'false',
+        'disabledefaultui'  => 'false',
         'infobox'           => '',
         'satellite'         => '',
         'tilt'              => '',
@@ -259,10 +259,10 @@ function initialize_'.$mapid.'() {
         '.($satellite?'mapTypeId: google.maps.MapTypeId.SATELLITE,':'').'
         zoom: '.$zoom.',
         center: myLatlng,
-        zoomControl: '.$zoomControl.',
+        zoomControl: '.$zoomcontrol.',
         scrollwheel: '.$scrollwheel.',
-        scaleControl: '.$scaleControl.',
-        disableDefaultUI: '.$disableDefaultUI.'
+        scaleControl: '.$scalecontrol.',
+        disableDefaultUI: '.$disabledefaultui.'
     };
     var '.$mapid.' = new google.maps.Map(document.getElementById("'.$id.'"), mapOptions);
     '.($tilt?$mapid.'.setTilt(45);':'').'
