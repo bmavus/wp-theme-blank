@@ -1,9 +1,9 @@
 // SweetAlert
 // github.com/t4t5/sweetalert
-$btnBlue: #AEDEF4;
-$btnGray: #D0D0D0;
-$width: 478px;
-$padding: 17px;
+$btnBlue_SA: #AEDEF4;
+$btnGray_SA: #D0D0D0;
+$width_SA: 478px;
+$padding_SA: 17px;
 .sweet-overlay {
     background-color: rgba(black, 0.4);
     @include position(fixed);
@@ -13,14 +13,14 @@ $padding: 17px;
 .sweet-alert {
     background-color: white;
     font-family: $font;
-    width: $width;
-    padding: $padding;
+    width: $width_SA;
+    padding: $padding_SA;
     border-radius: 5px;
     text-align: center;
     position: fixed;
     left: 50%;
     top: 50%;
-    margin-left: -($width/2 + $padding);
+    margin-left: -($width_SA/2 + $padding_SA);
     margin-top: -200px;
     overflow: hidden;
     display: none;
@@ -57,7 +57,7 @@ $padding: 17px;
         line-height: normal;
     }
     button {
-        background-color: $btnBlue;
+        background-color: $btnBlue_SA;
         color: white;
         border: none;
         box-shadow: none;
@@ -72,18 +72,18 @@ $padding: 17px;
             @include box-shadow(#{0 0 2px rgba(128, 179, 235, 0.5), inset 0 0 0 1px rgba(0, 0, 0, 0.05)});
     }
     &:hover {
-        background-color: darken($btnBlue, 3%);
+        background-color: darken($btnBlue_SA, 3%);
     }
     &:active {
-        background-color: darken($btnBlue, 10%);
+        background-color: darken($btnBlue_SA, 10%);
     }
     &.cancel {
-        background-color: $btnGray;
+        background-color: $btnGray_SA;
         &:hover {
-            background-color: darken($btnGray, 3%);
+            background-color: darken($btnGray_SA, 3%);
         }
         &:active {
-            background-color: darken($btnGray, 10%);
+            background-color: darken($btnGray_SA, 10%);
         }
         // Cancel button should keep the same style
         &:focus {
@@ -100,10 +100,10 @@ $padding: 17px;
     @include box-shadow(none !important);
 }
 .icon {
-    $red:         #F27474;
-    $orange:     #F8BB86;
-    $blue:         #C9DAE1;
-    $green:     #A5DC86;
+    $red_SA:         #F27474;
+    $orange_SA:     #F8BB86;
+    $blue_SA:         #C9DAE1;
+    $green_SA:     #A5DC86;
     width: 80px;
     height: 80px;
     border: 4px solid gray;
@@ -113,7 +113,7 @@ $padding: 17px;
     position: relative;
     @include box-sizing(content-box);
     &.error {
-        border-color: $red;
+        border-color: $red_SA;
         .x-mark {
             position: relative;
             display: block;
@@ -122,7 +122,7 @@ $padding: 17px;
             position: absolute;
             height: 5px;
             width: 47px;
-            background-color: $red;
+            background-color: $red_SA;
             display: block;
             top: 37px;
             border-radius: 2px;
@@ -137,7 +137,7 @@ $padding: 17px;
         }
     }
     &.warning {
-        border-color: $orange;
+        border-color: $orange_SA;
         .body { // Exclamation mark body
             position: absolute;
             width: 5px;
@@ -146,7 +146,7 @@ $padding: 17px;
             top: 10px;
             border-radius: 2px;
             margin-left: -2px;
-            background-color: $orange;
+            background-color: $orange_SA;
         }
         .dot { // Exclamation mark dot
             position: absolute;
@@ -156,11 +156,11 @@ $padding: 17px;
             margin-left: -3px;
             left: 50%;
             bottom: 10px;
-            background-color: $orange;
+            background-color: $orange_SA;
         }
     }
     &.info {
-        border-color: $blue;
+        border-color: $blue_SA;
         &::before { // i-letter body
             content: "";
             position: absolute;
@@ -170,7 +170,7 @@ $padding: 17px;
             bottom: 17px;
             border-radius: 2px;
             margin-left: -2px;
-            background-color: $blue;
+            background-color: $blue_SA;
         }
         &::after { // i-letter dot
             content: "";
@@ -180,11 +180,11 @@ $padding: 17px;
             border-radius: 50%;
             margin-left: -3px;
             top: 19px;
-            background-color: $blue;
+            background-color: $blue_SA;
         }
     }
     &.success {
-        border-color: $green;
+        border-color: $green_SA;
         &::before, &::after { // Emulate moving circular line
             content: '';
             @include border-radius(50%);
@@ -213,7 +213,7 @@ $padding: 17px;
         .placeholder { // Ring
             width: 80px;
             height: 80px;
-            border: 4px solid rgba($green, 0.2);
+            border: 4px solid rgba($green_SA, 0.2);
             @include border-radius(50%);
             @include box-sizing(content-box);
             position: absolute;
@@ -233,7 +233,7 @@ $padding: 17px;
         }
         .line {
             height: 5px;
-            background-color: $green;
+            background-color: $green_SA;
             display: block;
             border-radius: 2px;
             position: absolute;
