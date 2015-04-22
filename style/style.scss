@@ -112,6 +112,17 @@ body {
     width: 960px;
 }
 
+svg:not(:root) {
+    overflow: hidden;
+}
+.hidden {
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+}
+
 .wpcf7 {
     .screen-reader-response {display: none !important}
     .wpcf7-not-valid-tip {
