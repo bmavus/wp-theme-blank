@@ -80,14 +80,14 @@ function my_theme_register_required_plugins() {
             'required'  => false,
         ),
         array(
-            'name'               => 'Advanced Custom Fields: PRO',
-            'slug'               => 'advanced-custom-fields-pro',
-            'source'             => get_stylesheet_directory() . '/installer/plugins/advanced-custom-fields-pro.zip',
+            'name'               => 'Admin Columns: PRO',
+            'slug'               => 'codepress-admin-columns',
+            'source'             => get_stylesheet_directory() . '/installer/plugins/admin-columns-pro.zip',
             'required'           => false,
-            'version'            => '',
+            'version'            => '3.4.1',
             'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
             'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
-            'external_url'       => 'http://www.advancedcustomfields.com/pro/', // If set, overrides default API URL and points to an external URL.
+            'external_url'       => 'https://www.admincolumns.com/', // If set, overrides default API URL and points to an external URL.
         ),
         array(
             'name'               => 'Admin Columns PRO',
