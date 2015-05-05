@@ -70,6 +70,7 @@ register_nav_menus(array(
 ));
 
 /* BEGIN: Theme config params*/
+define ('AJAXSIGN', FALSE);
 define ('HOME_PAGE_ID', get_option('page_on_front'));
 define ('BLOG_ID', get_option('page_for_posts'));
 define ('POSTS_PER_PAGE', get_option('posts_per_page'));
@@ -86,7 +87,6 @@ add_theme_support( 'post-thumbnails' );
 function theme(){
     return ($_SERVER['REMOTE_ADDR']=='127.0.0.1'?site_url():'') . str_replace(site_url(), '', get_stylesheet_directory_uri());
 }
-
 
 //Body class
 function new_body_classes( $classes ){
@@ -180,7 +180,7 @@ function gebid($post_id, $num){
     $words = explode(' ', $the_excerpt, $excerpt_length + 1);
     if(count($words) > $excerpt_length) :
     array_pop($words);
-    array_push($words, '…');
+    array_push($words, '...');
     $the_excerpt = implode(' ', $words);
     endif;
     $the_excerpt = '<p>' . $the_excerpt . '</p>';
@@ -231,6 +231,7 @@ function tt_add_jscss() {
     wp_enqueue_script( 'jquery', get_template_directory_uri().'/js/jquery-1.9.1.js', array(), '', FALSE);
     wp_enqueue_script('libs', get_template_directory_uri().'/js/lib.js', array('jquery'), '1.0', true);
     wp_enqueue_script('init', get_template_directory_uri().'/js/init.js', array('jquery'), '1.0', true);
+    wp_enqueue_script('css3animateIt', get_template_directory_uri().'/js/css3animate-it.js', array('jquery'), '1.0', true);
 
     wp_deregister_style( 'contact-form-7' );
 
