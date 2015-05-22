@@ -51,7 +51,7 @@ select {
 img {max-width: 100%;height: auto;width: auto\9}
 p {padding-bottom: 20px}
 ul, ol {list-style: none}
-#wrap {min-height: 100%}
+#wrap {min-height: 100%; overflow: hidden}
 
 //clearfix
 .clear {clear: both}
