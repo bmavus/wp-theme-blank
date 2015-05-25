@@ -31,22 +31,6 @@ function tt_activete_theme() {
         include_once('plugins/cyr-to-lat.php');
     }
 
-    if(!class_exists('acf')) {
-        include_once('plugins/acf/acf.php');
-
-        add_filter('acf/settings/path', 'my_acf_settings_path');
-        function my_acf_settings_path( $path ) {
-            $path = get_stylesheet_directory_uri() . '/installer/plugins/acf/';
-            return $path;
-        }
-        add_filter('acf/settings/dir', 'my_acf_settings_dir');
-        function my_acf_settings_dir( $dir ) {
-            $dir = get_stylesheet_directory_uri() . '/installer/plugins/acf/';
-            return $dir;
-        }
-        //add_filter('acf/settings/show_admin', '__return_false');
-    }
-
     update_option('image_default_link_type','none');
     update_option('uploads_use_yearmonth_folders', 0);
     update_option('permalink_structure', '/%category%/%postname%/');
