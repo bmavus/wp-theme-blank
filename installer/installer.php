@@ -64,11 +64,11 @@ function my_theme_register_required_plugins() {
             'slug'      => 'quick-featured-images',
             'required'  => false,
         ),
-        array(
-            'name'      => 'Cyr to Lat enhanced',
-            'slug'      => 'cyr3lat',
-            'required'  => false,
-        ),
+//        array(
+//            'name'      => 'Cyr to Lat enhanced',
+//            'slug'      => 'cyr3lat',
+//            'required'  => false,
+//        ),
         array(
             'name'      => 'WP No Category Base',
             'slug'      => 'wp-no-category-base',
