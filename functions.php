@@ -64,7 +64,7 @@ function tt_add_jscss() {
         wp_deregister_style('qtranslate-style');
     }
 
-    if(defined(GOOGLEMAPS)) {
+    if(defined('GOOGLEMAPS')) {
         wp_enqueue_script('googlemaps', '//maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false', array(), '', false);
     }
     wp_enqueue_script('jquery', get_template_directory_uri().'/js/jquery-1.9.1.js', array(), '', false);

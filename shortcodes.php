@@ -38,7 +38,7 @@ function addEmailToLogin( $translated_text, $text, $domain ) {
     return $translated_text;
 }
 
-if(AJAXSIGN) {
+if(defined('AJAXSIGN')) {
 
     //login shortcode
     add_shortcode('ajax_login','ajaxlogin_shortcode_handler');
