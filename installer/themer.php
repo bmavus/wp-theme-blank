@@ -6,10 +6,10 @@ function theme($filepath = NULL){
 }
 
 // Run this code on 'after_theme_setup', when plugins have already been loaded.
-add_action('after_setup_theme', 'tt_activete_theme');
+add_action('after_setup_theme', 'tt_activate_theme');
 
 // This function loads the plugins && update some wordpress options
-function tt_activete_theme() {
+function tt_activate_theme() {
 
     // Check to see if your plugin has already been loaded. This can be done in several ways - here are a few examples:
     //
@@ -34,6 +34,18 @@ function tt_activete_theme() {
     update_option('image_default_link_type','none');
     update_option('uploads_use_yearmonth_folders', 0);
     update_option('permalink_structure', '/%category%/%postname%/');
+
+//    update_option('tadv-import', file_get_contents('./tinymce-advanced-preconfig.json', FILE_USE_INCLUDE_PATH));
+    add_action('admin_head', 'tinymce_custom_settings');
+    function tinymce_custom_settings() {
+        global $current_screen;
+        if ( $current_screen->id == 'settings_page_tinymce-advanced' ) {
+            $json_string = file_get_contents('tinymce-advanced-preconfig.json',TRUE);
+        ?>
+<script type="text/javascript">jQuery(function($) { var tcs_json = '<?php echo trim($json_string); ?>'; $('textarea#tadv-import').val(tcs_json); });</script>
+        <?php
+        }
+    }
 
 }
 
