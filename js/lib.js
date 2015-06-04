@@ -5,7 +5,16 @@ function FastClick(e,t){"use strict";function r(e,t){return function(){return e.
     equalHeight
     usage: equalHeight('selector');
 */
-function equalHeight(e){t=0,$(e).each(function(){th=$(this).height(),th>t&&(t=th)}),$(e).height(t),$(window).bind("orientationchange resize",function(){$(e).removeAttr("style"),setTimeout(function(){$(e).height(t)},250)})}
+function equalHeight(group) {
+    var tallest = 0;
+    $(group).each(function() {
+        var thisHeight = $(this).outerHeight();
+        if(thisHeight > tallest) {
+            tallest = thisHeight;
+        }
+    });
+    $(group).height(tallest);
+}
 //Resize End
 !function(t){var e,n,i;return i="resizeEnd",n={delay:250},e=function(e,u,r){return"function"==typeof u&&(r=u,u={}),r=r||null,this.element=e,this.settings=t.extend({},n,u),this._defaults=n,this._name=i,this._timeout=!1,this._callback=r,this.init()},e.prototype={init:function(){var e,n;return n=this,e=t(this.element),e.on("resize",function(){return n.initResize()})},getUTCDate:function(t){var e;return t=t||new Date,e=Date.UTC(t.getUTCFullYear(),t.getUTCMonth(),t.getUTCDate(),t.getUTCHours(),t.getUTCMinutes(),t.getUTCSeconds(),t.getUTCMilliseconds())},initResize:function(){var t;return t=this,t.controlTime=t.getUTCDate(),t._timeout===!1?(t._timeout=!0,setTimeout(function(){return t.runCallback(t)},t.settings.delay)):void 0},runCallback:function(t){var e;return e=t.getUTCDate(),e-t.controlTime<t.settings.delay?setTimeout(function(){return t.runCallback(t)},t.settings.delay):(t._timeout=!1,t._callback())}},t.fn[i]=function(n,u){return this.each(function(){return t.data(this,"plugin_"+i)?void 0:t.data(this,"plugin_"+i,new e(this,n,u))})}}(jQuery,window,document);
 //sweetalert
