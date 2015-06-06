@@ -219,17 +219,21 @@ add_filter( 'body_class', 'new_body_classes' );
 
 function seo_title(){
     global $post;
-    if(is_404()) {
-        echo '404 Page not found - ';
-    } elseif($post->post_parent) {
-        $parent_title = get_the_title($post->post_parent);
-        echo wp_title('-', true, 'right') . $parent_title.' - ';
-    } elseif(class_exists('Woocommerce') && is_shop()) {
-        echo get_the_title(SHOP_ID) . ' - ';
+    if(!defined('WPSEO_VERSION')) {
+        if(is_404()) {
+            echo '404 Page not found - ';
+        } elseif($post->post_parent) {
+            $parent_title = get_the_title($post->post_parent);
+            echo wp_title('-', true, 'right') . $parent_title.' - ';
+        } elseif(class_exists('Woocommerce') && is_shop()) {
+            echo get_the_title(SHOP_ID) . ' - ';
+        } else {
+            wp_title('-', true, 'right');
+        }
+        bloginfo('name');
     } else {
-        wp_title('-', true, 'right');
+        wp_title();
     }
-    bloginfo('name');
 }
 
 /* ===== qTranslate/qTranslate X  ===== */
