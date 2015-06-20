@@ -35,7 +35,6 @@ function tt_activate_theme() {
     update_option('uploads_use_yearmonth_folders', 0);
     update_option('permalink_structure', '/%category%/%postname%/');
 
-//    update_option('tadv-import', file_get_contents('./tinymce-advanced-preconfig.json', FILE_USE_INCLUDE_PATH));
     add_action('admin_head', 'tinymce_custom_settings');
     function tinymce_custom_settings() {
         global $current_screen;
@@ -324,3 +323,9 @@ function my_login_failed_403() {
     status_header( 403 );
 }
 add_action( 'wp_login_failed', 'my_login_failed_403' );
+
+//custom ajax-admin.php rewrite
+function new_ajax_admin_url() {
+    add_rewrite_rule('a/(.*)$','wp-admin/admin-ajax.php/$1','top');
+}
+add_action('init', 'new_ajax_admin_url', 10, 0);

@@ -15,11 +15,14 @@ endif;
 
 /* END: Theme config params */
 
-//Auto-install recommended plugins
+// Auto-install recommended plugins
 require_once('installer/installer.php');
 
 // Run pre-installed plugins
 require_once('installer/themer.php');
+
+// Include custom assets
+require_once('installer/assets.php');
 
 // Custom shortcodes
 require_once('shortcodes.php');
@@ -52,31 +55,6 @@ function gebid($post_id, $num){
     return $the_excerpt;
 }
 
-//Custom JS/Styles
-function tt_add_jscss() {
-    if (!is_admin()) {
-        wp_deregister_script( 'jquery' );
-    }
-
-    wp_deregister_style( 'contact-form-7' );
-
-    if(defined('QTRANS_INIT')) {
-        wp_deregister_style('qtranslate-style');
-    }
-
-    if(defined('GOOGLEMAPS')) {
-        wp_enqueue_script('googlemaps', '//maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false', array(), '', false);
-    }
-    wp_enqueue_script('jquery', get_template_directory_uri().'/js/jquery-1.9.1.js', array(), '', false);
-    wp_enqueue_script('libs', get_template_directory_uri().'/js/lib.js', array('jquery'), '1.0', true);
-    wp_enqueue_script('init', get_template_directory_uri().'/js/init.js', array('jquery'), '1.0', true);
-    wp_enqueue_script('css3animateIt', get_template_directory_uri().'/js/css3animate-it.js', array('jquery'), '1.0', true);
-
-    wp_enqueue_style('animations', get_template_directory_uri() . '/style/animations.min.css' );
-    wp_enqueue_style('scss', get_template_directory_uri() . '/style/style.scss');
-}
-add_action('wp_enqueue_scripts', 'tt_add_jscss');
-
 $bar = array(
     'name'          => 'Blog Sidebar',
     'id'            => 'blogbar',
@@ -108,12 +86,6 @@ if( function_exists('acf_add_options_page') ) {
         'parent_slug' => 'acf-theme-settings',
     ));
 }
-
-//custom ajax-admin.php rewrite
-function new_ajax_admin_url() {
-    add_rewrite_rule('a/(.*)$','wp-admin/admin-ajax.php/$1','top');
-}
-add_action('init', 'new_ajax_admin_url', 10, 0);
 
 function get_alt($id){
     $c_alt = get_post_meta($id, '_wp_attachment_image_alt', true);

@@ -1,18 +1,7 @@
-/*jslint browser: true, white: true*/
-/*global $, jQuery, FastClick*/
+/*jslint browser: true, white: true, plusplus: true, regexp: true, indent: 4, maxerr: 50 */
+/*global $, jQuery, FastClick, reSizer*/
 $ = jQuery;
-var hash = window.location.hash;
-var supportsTouch = false;
-if (window.hasOwnProperty('ontouchstart') || window.navigator.msPointerEnabled) { supportsTouch = true; }
-var TouchClickEvent = supportsTouch ? 'touchstart' : 'click';
-function footer(e){
-    "use strict";
-    $('.footix').height($('footer').outerHeight());
-}
-function ww(){
-    'use strict';
-    return document.body.clientWidth;
-}
+
 $(document).ready(function () {
     "use strict";
     $(this).on('click', '.wpcf7-not-valid-tip', function(){
@@ -25,10 +14,13 @@ $(document).ready(function () {
 
 $(window).load(function(){
     "use strict";
-    footer();
-    FastClick.attach(document.body);
 });
+
 $(window).bind('orientationchange resize', function(){
     "use strict";
-    footer();
+    reSizer();
+});
+
+$(window).resizeEnd(function(){
+    "use strict";
 });
