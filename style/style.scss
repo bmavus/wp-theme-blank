@@ -109,7 +109,7 @@ body {
     margin: 0 auto;
     max-width: 96%;
     position: relative;
-    width: 960px;
+    width: $container
 }
 
 svg:not(:root) {
@@ -192,6 +192,18 @@ svg:not(:root) {
         height: 100px;
         padding: 10px;
         line-height: 20px
+    }
+}
+
+.content {
+    article[role="main"] {
+        float: left;
+        width: 600px / $container * 100%;
+    }
+
+    aside[role="complimentary"] {
+        float: right;
+        width: 320px / $container * 100%;
     }
 }
 

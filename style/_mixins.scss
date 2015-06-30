@@ -1,6 +1,8 @@
 $font: 'Arial', sans-serif;
 $path: '/wp-content/themes/wp-theme-blank/';
 
+$container: 960px;
+
 @mixin declare-font-face($font-family, $font-filename, $font-weight : normal, $font-style :normal) {
     @font-face {
         font-family: '#{$font-family}';
