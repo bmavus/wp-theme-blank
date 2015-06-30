@@ -11,6 +11,7 @@ define ('POSTS_PER_PAGE', get_option('posts_per_page'));
 if(class_exists('Woocommerce')) :
     define ('SHOP_ID', get_option('woocommerce_shop_page_id'));
     define ('ACCOUNT_ID', get_option('woocommerce_myaccount_page_id'));
+    require_once('installer/woocommerce.php');
 endif;
 
 /* END: Theme config params */

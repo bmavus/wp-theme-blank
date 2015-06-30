@@ -10,6 +10,7 @@ $(document).ready(function () {
             $(this).remove();
         });
     });
+    reSizer();
 });
 
 $(window).load(function(){

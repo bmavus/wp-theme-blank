@@ -5,10 +5,10 @@ var hash = window.location.hash,
     supportsTouch = window.hasOwnProperty('ontouchstart') || window.navigator.msPointerEnabled ? true : false,
     TouchClickEvent = supportsTouch ? 'touchstart' : 'click';
 
-(function reSizer(){
+function reSizer(){
     "use strict";
     $('.footix').height($('footer').outerHeight());
-})();
+}
 
 /*
     equalHeight
