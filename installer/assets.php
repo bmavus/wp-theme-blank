@@ -25,7 +25,7 @@ function tt_add_jscss() {
     wp_enqueue_style('animations', get_template_directory_uri() . '/style/animations.min.css' );
     wp_enqueue_style('scss', get_template_directory_uri() . '/style/style.scss');
 
-    if(class_exists('Woocommerce') {
+    if(class_exists('Woocommerce')) {
         wp_enqueue_style('custom-woo', get_template_directory_uri() . '/style/woo.scss' );
     }
 }
