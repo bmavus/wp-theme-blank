@@ -4,12 +4,23 @@ $ = jQuery;
 
 $(document).ready(function () {
     "use strict";
+    //contact form 7
     $(this).on('click', '.wpcf7-not-valid-tip', function(){
         $(this).prev().trigger('focus');
         $(this).fadeOut(500,function(){
             $(this).remove();
         });
     });
+
+    //fluid video (iframe)
+    $('.content article iframe').each(function(i) {
+        var t = $(this),
+            p = t.parent();
+        if (p.is('p') && !p.hasClass('fullframe')) {
+            p.addClass('fullframe');
+        }
+    });
+
     reSizer();
 });
 
