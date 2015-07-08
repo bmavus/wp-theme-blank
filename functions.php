@@ -2,8 +2,8 @@
 
 /* BEGIN: Theme config params*/
 
-define ('AJAXSIGN', FALSE);
-define ('GOOGLEMAPS', FALSE);
+//define ('AJAXSIGN', FALSE);
+//define ('GOOGLEMAPS', FALSE);
 define ('WPFOLDER', '');
 define ('HOME_PAGE_ID', get_option('page_on_front'));
 define ('BLOG_ID', get_option('page_for_posts'));
