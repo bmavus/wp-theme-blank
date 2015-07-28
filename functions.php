@@ -56,16 +56,23 @@ function gebid($post_id, $num){
     return $the_excerpt;
 }
 
-$bar = array(
-    'name'          => 'Blog Sidebar',
-    'id'            => 'blogbar',
-    'description'   => 'Sidebar for news section',
-    'before_widget' => '<div class="widget cfx %2$s">',
-    'after_widget'  => '</div>',
-    'before_title'  => '<div class="widgettitle">',
-    'after_title'   => '</div>'
+$reg_sidebars = array (
+    'page_sidebar'     => 'Page Sidebar',
+    'blog_sidebar'     => 'Blog Sidebar',
+    'footer_sidebar'   => 'Footer Area',
 );
-register_sidebar($bar);
+foreach ( $reg_sidebars as $id => $name ) {
+    register_sidebar(
+        array (
+            'name'          => __( $name ),
+            'id'            => $id,
+            'before_widget' => '<div class="widget cfx %2$s">',
+            'after_widget'  => '</div>',
+            'before_title'  => '<mark class="widget-title">',
+            'after_title'   => '</mark>',
+        )
+    );
+}
 
 
 if( function_exists('acf_add_options_page') ) {
