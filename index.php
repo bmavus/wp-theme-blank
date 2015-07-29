@@ -22,7 +22,7 @@ if(is_date()){
             <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('large'); ?></a>
             <?php } ?>
             <h2><a href="<?php the_permalink(); ?>" class="blogtitle"><?php the_title() ;?></a></h2>
-            <time><?php the_date( 'F j, Y'); ?></time>
+            <time><?php echo get_the_date( 'F j, Y'); ?></time>
             <?php echo gebid($post->ID, 30, 'Read More'); ?>
         </div>
         <?php } else { ?>
@@ -32,7 +32,7 @@ if(is_date()){
             <?php } ?>
             <div class="excerpt">
                 <h2><a href="<?php the_permalink(); ?>" class="blogtitle"><?php the_title(); ?></a></h2>
-                <time><?php the_date( 'F j, Y'); ?></time>
+                <time><?php echo get_the_date( 'F j, Y'); ?></time>
                 <?php echo gebid($post->ID, 30, 'Read More'); ?>
             </div>
         </div>
