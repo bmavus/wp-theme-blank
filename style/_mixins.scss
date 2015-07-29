@@ -6,11 +6,11 @@ $container: 960px;
 @mixin declare-font-face($font-family, $font-filename, $font-weight : normal, $font-style :normal) {
     @font-face {
         font-family: '#{$font-family}';
-        src: url('fonts/#{$font-filename}.eot');
-        src: url('fonts/#{$font-filename}.eot?#iefix') format('embedded-opentype'),
-            url('fonts/#{$font-filename}.woff') format('woff'),
-            url('fonts/#{$font-filename}.ttf') format('truetype'),
-            url('fonts/#{$font-filename}.svg##{$font-family}') format('svg');
+        src: url('#{$path}style/fonts/#{$font-filename}.eot');
+        src: url('#{$path}style/fonts/#{$font-filename}.eot?#iefix') format('embedded-opentype'),
+            url('#{$path}style/fonts/#{$font-filename}.woff') format('woff'),
+            url('#{$path}style/fonts/#{$font-filename}.ttf') format('truetype'),
+            url('#{$path}style/fonts/#{$font-filename}.svg##{$font-family}') format('svg');
         font-weight: $font-weight;
         font-style: $font-style
     }
@@ -18,16 +18,16 @@ $container: 960px;
 @mixin svg-font-face($font-family, $font-filename, $font-weight : normal, $font-style :normal) {
     @font-face {
         font-family: '#{$font-family}';
-        src: url('fonts/#{$font-filename}.svg##{$font-family}') format('svg');
+        src: url('#{$path}style/fonts/#{$font-filename}.svg##{$font-family}') format('svg');
         font-weight: $font-weight;
         font-style: $font-style
     }
 }
 /* Usage
-@include declare-font-face('FontName', 'font-filename', 400);
+@include declare-font-face('FontName', 'fontfilename', 400);
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-@include svg-font-face('FontName', 'font-filename', 400);
+@include svg-font-face('FontName', 'fontfilename', 400);
 }
 */
 @mixin border-radius($radius) {

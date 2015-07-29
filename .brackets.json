@@ -11,7 +11,15 @@
             },
             "mikaeljorhult.bracketsPHPLintTools.php-available": true,
             "brackets-css-color-preview.enabled": true,
-            "linting.collapsed": true
+            "linting.collapsed": true,
+            "bigeyex.bracketsSFTPUpload.D:/syncdata/Downloads/wp-theme-blank/trunk/|changed_files": {
+                "D:/syncdata/Downloads/wp-theme-blank/trunk/functions.php": 1,
+                "D:/syncdata/Downloads/wp-theme-blank/trunk/shortcodes.php": 1,
+                "D:/syncdata/Downloads/wp-theme-blank/trunk/header.php": 1,
+                "D:/syncdata/Downloads/wp-theme-blank/trunk/footer.php": 1,
+                "D:/syncdata/Downloads/wp-theme-blank/trunk/style/_mixins.scss": 1,
+                "D:/syncdata/Downloads/wp-theme-blank/trunk/style/style.scss": 1
+            }
         }
     }
 }

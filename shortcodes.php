@@ -345,6 +345,36 @@ function content_btn($atts,$content){
 }
 add_shortcode("button", "content_btn");
 
+function tree_children($absolute = false, $page_id = 0) {
+    global $post;
+    $ex_pages =  null;
+    $ex_args = array(
+        'posts_per_page' => -1,
+        'post_type'   => 'page',
+        'meta_key'   => 'hide_page'
+    );
+    $excluded = new WP_Query($ex_args);
+    if( $excluded->have_posts() ): while( $excluded->have_posts() ) : $excluded->the_post();
+        $ex_pages .= get_the_ID() .',';
+    endwhile;
+    $ex_pages = substr($ex_pages, 0, -1);
+    endif;
+    wp_reset_query();
+    $childlist = get_pages('child_of=' . $post->ID. ($ex_pages?'&exclude='.$ex_pages:''));
+    $children = '';
+    if ($post->post_parent) {
+        $ancestors = get_post_ancestors($post->ID);
+        $reverse = array_reverse($ancestors);
+        $abs = $reverse[0];
+        $children .= '<ul class="submenu">';
+        $children .= wp_list_pages("title_li=&child_of=" . $abs . "&echo=0&sort_column=menu_order" . ($ex_pages?'&exclude='.$ex_pages:'') );
+        $children .= '</ul>';
+        echo $children;
+    } elseif ($childlist) {
+        echo '<ul class="submenu">' . wp_list_pages("title_li=&child_of=" . $post->ID . "&echo=0&sort_column=menu_order" . ($ex_pages?'&exclude='.$ex_pages:'') ) . '</ul>';
+    }
+}
+
 //remove <p> and <br /> from shortcodes
 add_filter('the_content', 'shortcode_empty_paragraph_fix');
 function shortcode_empty_paragraph_fix($content){

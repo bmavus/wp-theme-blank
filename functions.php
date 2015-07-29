@@ -101,23 +101,6 @@ function get_alt($id){
     return $c_alt?$c_alt:$c_tit;
 }
 
-function tree_children($absolute = false, $page_id = 0) {
-    global $post;
-    $childlist = get_pages('child_of='.$post->ID);
-    $children = '';
-    if($post->post_parent) {
-        $ancestors = get_post_ancestors($post->ID);
-        $reverse = array_reverse($ancestors);
-        $abs = $reverse[0];
-        $children .= '<ul class="submenu">';
-        $children .= wp_list_pages("title_li=&child_of=".$abs."&echo=0&sort_column=menu_order");
-        $children .= '</ul>';
-        echo $children;
-    } elseif($childlist) {
-        echo '<ul class="submenu">' . wp_list_pages("title_li=&child_of=".$post->ID."&echo=0&sort_column=menu_order") . '</ul>';
-    }
-}
-
 function cats($pid){
     $post_categories = wp_get_post_categories($pid);
     $cats = '';
