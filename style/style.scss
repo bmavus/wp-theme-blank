@@ -203,6 +203,29 @@ svg:not(:root) {
     article[role="main"] {
         float: left;
         width: 600px / $container * 100%;
+
+        .blogpost {
+            border-bottom: 1px solid #e1e1e1;
+            margin-bottom: 20px;
+            .blogimg {
+                width: 222px;
+                margin-right: 20px;
+                img {
+                    display: block;
+                }
+            }
+            .blogtitle {
+                color: #000;
+                &:hover {
+                    color: #bbb
+                }
+            }
+            .readmore {
+                text-align: right;
+                text-transform: uppercase;
+            }
+        }
+
     }
     aside {
         float: right;

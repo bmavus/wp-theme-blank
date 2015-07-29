@@ -3,10 +3,6 @@ $catID = get_queried_object()->term_id;
 $catN = get_queried_object()->name;
 $curauth = $wp_query->get_queried_object();
 
-//if(is_post_type_archive('projects')){
-//    wp_redirect(site_url());
-//}
-
 if(is_date()){
     $queryname = 'Archive of '.date("F").', '.date('Y');
 } elseif(is_category()) {
@@ -16,33 +12,37 @@ if(is_date()){
 } else {
     $queryname = get_the_title(BLOG_ID);
 } ?>
-<?php if($queryname) : echo '<h1>'. $queryname. '</h1>'; endif; ?>
 <section class="content row cfx">
-    <article>
+    <?php if($queryname) : echo '<h1>'. $queryname. '</h1>'; endif; ?>
+    <article role="main">
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-            <div class="blogpost cfx">
-                <?php if ( has_post_thumbnail() ) { ?>
-                    <div class="alignleft">
-                        <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('thumbnail'); ?></a>
-                    </div>
-                <?php } ?>
-                <div class="excerpt">
-                    <a href="<?php the_permalink(); ?>" class="blogtitle"><?php the_title(); ?></a>
-                    <div class="blogmeta cfx">
-                        <div class="author"><?php the_author(); ?></div>
-                        <div class="ccount"><?php comments_number( 'No comments', 'One comment', '% comments' ); ?></div>
-                        <time><?php the_date( 'F j'); ?><span>, <?php echo get_the_date('Y'); ?></span></time>
-                    </div>
-                    <?php the_content('Read More'); ?>
-                </div>
+        <?php if(is_sticky($post->ID)) { ?>
+        <div class="sticky_post blogpost cfx">
+            <?php if ( has_post_thumbnail() ) { ?>
+            <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('large'); ?></a>
+            <?php } ?>
+            <h2><a href="<?php the_permalink(); ?>" class="blogtitle"><?php the_title() ;?></a></h2>
+            <time><?php the_date( 'F j, Y'); ?></time>
+            <?php echo gebid($post->ID, 30, 'Read More'); ?>
+        </div>
+        <?php } else { ?>
+        <div class="sticky_post blogpost cfx">
+            <?php if ( has_post_thumbnail() ) { ?>
+            <a href="<?php the_permalink(); ?>" class="alignleft blogimg"><?php the_post_thumbnail('blog_image'); ?></a>
+            <?php } ?>
+            <div class="excerpt">
+                <h2><a href="<?php the_permalink(); ?>" class="blogtitle"><?php the_title(); ?></a></h2>
+                <time><?php the_date( 'F j, Y'); ?></time>
+                <?php echo gebid($post->ID, 30, 'Read More'); ?>
             </div>
+        </div>
+        <?php } ?>
         <?php endwhile;
-        wp_pagenavi();
-        endif;?>
+            wp_pagenavi();
+        endif; ?>
     </article>
-    <aside class="alignright">
+    <aside>
         <?php dynamic_sidebar('Blog Sidebar'); ?>
     </aside>
 </section>
 <?php get_footer(); ?>
-
