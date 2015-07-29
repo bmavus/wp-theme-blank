@@ -41,19 +41,22 @@ register_nav_menus(array(
 //add_image_size( 'example_name', '960', '540', true );
 
 //excerpt custom
-function gebid($post_id, $num){
+function gebid($post_id, $num, $readmore = ''){
     $the_post = get_post($post_id); //Gets post ID
-    $the_excerpt = $the_post->post_content; //Gets post_content to be used as a basis for the excerpt
-    $excerpt_length = $num; //Sets excerpt length by word count
-    $the_excerpt = strip_tags(strip_shortcodes($the_excerpt)); //Strips tags and images
-    $words = explode(' ', $the_excerpt, $excerpt_length + 1);
-    if(count($words) > $excerpt_length) :
+    $the_excerpt = strip_tags(strip_shortcodes($the_post->post_content)); //Strips tags and images
+    $more = trim(strip_tags(substr($the_post->post_content, 0, strpos($the_post->post_content, '<!--more'))));//check if post has more tag
+    $words = explode(' ', $the_excerpt, $num + 1);
+    if(count($words) > $num) :
     array_pop($words);
     array_push($words, '...');
     $the_excerpt = implode(' ', $words);
     endif;
-    $the_excerpt = '<p>' . $the_excerpt . '</p>';
-    return $the_excerpt;
+    if($more != '') {
+        $content = $more;
+    } else {
+        $content = '<p>' . $the_excerpt . '</p>';
+    }
+    return $content . ($readmore != ''?'<p class="readmore"><a href="' . get_permalink($post_id) . '">' . $readmore . '</a></p>':'');
 }
 
 $reg_sidebars = array (
