@@ -350,8 +350,9 @@ function tree_children($absolute = false, $page_id = 0) {
     $ex_pages =  null;
     $ex_args = array(
         'posts_per_page' => -1,
-        'post_type'   => 'page',
-        'meta_key'   => 'hide_page'
+        'post_type'      => 'page',
+        'meta_key'       => 'hide_page',
+        'meta_value'     => true
     );
     $excluded = new WP_Query($ex_args);
     if( $excluded->have_posts() ): while( $excluded->have_posts() ) : $excluded->the_post();
