@@ -36,3 +36,7 @@ $(window).bind('orientationchange resize', function(){
 $(window).resizeEnd(function(){
     "use strict";
 });
+
+window.onload = function () {
+    aload();
+};
