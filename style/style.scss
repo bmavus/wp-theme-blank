@@ -103,6 +103,8 @@ strong {font-weight: 700}
 input[type="submit"] {cursor: pointer}
 textarea, button, a, input {@include transition(all, .5s)}
 
+[data-aload] { background-image: none !important; }
+
 body {
     position: relative;
     font: 400 15px/20px $font;
