@@ -1,13 +1,13 @@
 /* -----------------------------------------------------------------------------
-HAMBURGER ICONS COMPONENT
-source: https://github.com/callmenick/Animating-Hamburger-Icons
+    HAMBURGER ICONS COMPONENT
+    source: https://github.com/callmenick/Animating-Hamburger-Icons
 ----------------------------------------------------------------------------- */
 
 // vars
 $button-width: 32px; // The width of the button area
 $button-height: 32px; // The height of the button area
 $bar-thickness: 2px; // The thickness of the button bars
-$button-pad: 4px; // The left/right padding between button area and bars.
+$button-pad: 6px; // The left/right padding between button area and bars.
 $button-bar-space: 4px; // The spacing between button bars
 $button-transistion-duration: 0.3s; // The transition duration
 /**
@@ -59,7 +59,7 @@ $button-transistion-duration: 0.3s; // The transition duration
     left: 0;
     width: 100%;
     height: $bar-thickness;
-    background-color: #fff;
+    background: #fff;
     content: "";
 }
 
@@ -82,7 +82,7 @@ $button-transistion-duration: 0.3s; // The transition duration
 }
 
 .c-hamburger--rot span {
-    transition: transform $button-transistion-duration;
+    @include transition(transform, $button-transistion-duration);
 }
 /* active state, i.e. menu open */
 
@@ -91,7 +91,7 @@ $button-transistion-duration: 0.3s; // The transition duration
 }
 
 .c-hamburger--rot.is-active span {
-    transform: rotate(90deg);
+    @include transform(rotate(90deg));
 }
 /**
 * Style 2
@@ -101,7 +101,7 @@ $button-transistion-duration: 0.3s; // The transition duration
 */
 
 .c-hamburger--htx {
-    background-color: rgb(255, 50, 100);
+    background: rgb(255, 50, 100);
 }
 
 .c-hamburger--htx span {
@@ -124,7 +124,7 @@ $button-transistion-duration: 0.3s; // The transition duration
 /* active state, i.e. menu open */
 
 .c-hamburger--htx.is-active {
-    background-color: darken(rgb(255, 50, 100), 20%);
+    background: darken(rgb(255, 50, 100), 20%);
 }
 
 .c-hamburger--htx.is-active span {
@@ -133,12 +133,12 @@ $button-transistion-duration: 0.3s; // The transition duration
 
 .c-hamburger--htx.is-active span::before {
     top: 0;
-    transform: rotate(45deg);
+    @include transform(rotate(45deg));
 }
 
 .c-hamburger--htx.is-active span::after {
     bottom: 0;
-    transform: rotate(-45deg);
+    @include transform(rotate(-45deg));
 }
 
 .c-hamburger--htx.is-active span::before,
@@ -158,7 +158,7 @@ $button-transistion-duration: 0.3s; // The transition duration
 }
 
 .c-hamburger--htla span {
-    transition: transform $button-transistion-duration;
+    @include transition(transform, $button-transistion-duration);
 }
 
 .c-hamburger--htla span::before,
@@ -180,7 +180,7 @@ $button-transistion-duration: 0.3s; // The transition duration
 }
 
 .c-hamburger--htla.is-active span {
-    transform: rotate(180deg);
+    @include transform(rotate(180deg));
 }
 
 .c-hamburger--htla.is-active span::before,
@@ -190,12 +190,12 @@ $button-transistion-duration: 0.3s; // The transition duration
 
 .c-hamburger--htla.is-active span::before {
     top: 0;
-    transform: translateX($button-width/2 - $button-pad + $bar-thickness) translateY($bar-thickness/2) rotate(45deg);
+    @include transform(translateX($button-width/2 - $button-pad + $bar-thickness) translateY($bar-thickness/2) rotate(45deg));
 }
 
 .c-hamburger--htla.is-active span::after {
     bottom: 0;
-    transform: translateX($button-width/2 - $button-pad + $bar-thickness) translateY(-$bar-thickness/2) rotate(-45deg);
+    @include transform(translateX($button-width/2 - $button-pad + $bar-thickness) translateY(-$bar-thickness/2) rotate(-45deg));
 }
 /**
 * Style 4
@@ -210,7 +210,7 @@ $button-transistion-duration: 0.3s; // The transition duration
 }
 
 .c-hamburger--htra span {
-    transition: transform $button-transistion-duration;
+    @include transition(transform, $button-transistion-duration);
 }
 
 .c-hamburger--htra span::before,
@@ -232,7 +232,7 @@ $button-transistion-duration: 0.3s; // The transition duration
 }
 
 .c-hamburger--htra.is-active span {
-    transform: rotate(180deg);
+    @include transform(rotate(180deg));
 }
 
 .c-hamburger--htra.is-active span::before,
@@ -242,10 +242,10 @@ $button-transistion-duration: 0.3s; // The transition duration
 
 .c-hamburger--htra.is-active span::before {
     top: 0;
-    transform: translateX(-$bar-thickness) translateY($bar-thickness/2) rotate(-45deg);
+    @include transform(translateX(-$bar-thickness) translateY($bar-thickness/2) rotate(-45deg));
 }
 
 .c-hamburger--htra.is-active span::after {
     bottom: 0;
-    transform: translateX(-$bar-thickness) translateY(-$bar-thickness/2) rotate(45deg);
+    @include transform(translateX(-$bar-thickness) translateY(-$bar-thickness/2) rotate(45deg));
 }
