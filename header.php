@@ -23,6 +23,7 @@
     <header>
         <div class="row cfx">
             <a href="<?php echo site_url('/'); ?>" class="logo"></a>
+            <a class="c-hamburger c-hamburger--htx" href=""><span></span></a>
             <nav role="navigation" class="cfx">
                 <?php wp_nav_menu(array('container' => false, 'items_wrap' => '<ul id="%1$s">%3$s</ul>', 'theme_location'  => 'primary_menu')); ?>
             </nav>

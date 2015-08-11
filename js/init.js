@@ -22,6 +22,13 @@ $(document).ready(function () {
     });
 
     reSizer();
+
+    //hamburger menu
+    $('.c-hamburger').click(function(){
+        $(this).toggleClass('is-active');
+        return false;
+    });
+
 });
 
 $(window).load(function(){

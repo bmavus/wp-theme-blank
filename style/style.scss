@@ -1,5 +1,6 @@
 @import 'mixins';
 @import 'sweetAlert';
+@import 'hamburger;
 
 //custom reset
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {display: block}
@@ -198,6 +199,18 @@ svg:not(:root) {
         height: 100px;
         padding: 10px;
         line-height: 20px
+    }
+}
+
+header {
+    .c-hamburger {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        z-index: 10;
+        background: #000;
+        @include transform(translateY(-50%));
+        display: none;
     }
 }
 
