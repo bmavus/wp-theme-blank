@@ -12,6 +12,8 @@ define ('ALOAD', '//tt.bitballoon.com/_.gif');
 if(class_exists('Woocommerce')) :
     define ('SHOP_ID', get_option('woocommerce_shop_page_id'));
     define ('ACCOUNT_ID', get_option('woocommerce_myaccount_page_id'));
+    define ('CART_ID', get_option('woocommerce_cart_page_id'));
+    define ('CHECKOUT_ID', get_option('woocommerce_checkout_page_id'));
     require_once('installer/woocommerce.php');
 endif;
 
