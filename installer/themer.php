@@ -252,24 +252,6 @@ if(defined('QTX_VERSION')) {
         return qtranxf_convertURL(site_url($url));
     }
 
-    // qTranslate Taxonomies Description Fix
-    function qtranslate_edit_taxonomies(){
-        $args = array(
-            'public' => true ,
-            '_builtin' => false
-        );
-        $output = 'object';
-        $operator = 'and'; // 'and' or 'or'
-        $taxonomies = get_taxonomies($args,$output,$operator);
-        if  ($taxonomies) {
-            foreach ($taxonomies  as $taxonomy ) {
-                add_action( $taxonomy->name.'_add_form', 'qtrans_modifyTermFormFor');
-                add_action( $taxonomy->name.'_edit_form', 'qtrans_modifyTermFormFor');
-            }
-        }
-    }
-    add_action('admin_init', 'qtranslate_edit_taxonomies');
-
     // Custom Links fix
     add_filter('walker_nav_menu_start_el', 'qtrans_in_nav_el', 10, 4);
     function qtrans_in_nav_el($item_output, $item, $depth, $args){
