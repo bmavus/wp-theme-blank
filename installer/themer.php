@@ -40,9 +40,9 @@ function tt_activate_theme() {
         global $current_screen;
         if ( $current_screen->id == 'settings_page_tinymce-advanced' ) {
             $json_string = file_get_contents('tinymce-advanced-preconfig.json',TRUE);
-        ?>
+?>
 <script type="text/javascript">jQuery(function($) { var tcs_json = '<?php echo trim($json_string); ?>'; $('textarea#tadv-import').val(tcs_json); });</script>
-        <?php
+<?php
         }
     }
 
@@ -210,6 +210,12 @@ function new_body_classes( $classes ){
     } else {
         $classes[] = 'unknown-browser';
     }
+
+    //qtranslate classes
+    if(defined('QTX_VERSION')) {
+        $classes[] = 'qtrans-' . qtranxf_getLanguage();
+    }
+
     return $classes;
 }
 add_filter( 'body_class', 'new_body_classes' );
@@ -237,13 +243,13 @@ function seo_title(){
 
 /* ===== qTranslate/qTranslate X  ===== */
 
-if(defined('QTRANS_INIT')) {
+if(defined('QTX_VERSION')) {
     remove_action('wp_head', 'qtranxf_head', 10, 0);
     remove_action('wp_head', 'qtrans_header', 10, 0);
 
     // Convert blogurl
     function qtrans_home_url($url = '') {
-        return qtrans_convertURL(site_url($url));
+        return qtranxf_convertURL(site_url($url));
     }
 
     // qTranslate Taxonomies Description Fix
@@ -271,8 +277,8 @@ if(defined('QTRANS_INIT')) {
         $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
         $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
         // Determine integration with qTranslate Plugin
-        if (function_exists('qtrans_convertURL')) {
-            $attributes .= ! empty( $item->url ) ? ' href="' . qtrans_convertURL(esc_attr( $item->url )) .'"' : '';
+        if (function_exists('qtranxf_convertURL')) {
+            $attributes .= ! empty( $item->url ) ? ' href="' . qtranxf_convertURL(esc_attr( $item->url )) .'"' : '';
         } else {
             $attributes .= ! empty( $item->url ) ? ' href="' . esc_attr( $item->url ) .'"' : '';
         }
